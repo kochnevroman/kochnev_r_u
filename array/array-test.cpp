@@ -36,37 +36,6 @@ int main()
     cout << AB;
     int t = 5;
     cin >> t;
+
     return 0;
-}
-
-std::ostream& Array::writeTo(std::ostream& ostrm) const
-{
-    ostrm << leftBrace << x_ << separator << y_ << separator << z_ << rightBrace;
-    return ostrm;
-}
-
-std::istream& Array::readFrom(std::istream& istrm)
-{
-    char leftBrace(0);
-    int x(0);
-    char s(0);
-    int y(0);
-    int z(0);
-    char rightBrace(0);
-    istrm >> leftBrace >> x_ >> s >> y_ >> s >> z_ >> rightBrace;
-    if (istrm.good())
-    {
-        if ((Array::leftBrace == leftBrace) && (Array::separator == s)
-            && (Array::rightBrace == rightBrace))
-        {
-            x_ = x;
-            y_ = y;
-            z_ = z;
-        }
-        else
-        {
-            istrm.setstate(std::ios_base::failbit);
-        }
-    }
-    return istrm;
 }
