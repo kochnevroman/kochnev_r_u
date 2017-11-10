@@ -1,7 +1,3 @@
-//
-// Created by Roman Kochnev on 25.10.2017.
-//
-
 #include "vector3d_t.h"
 #include <iostream>
 #include <sstream>
@@ -12,15 +8,15 @@ template <typename T>
 bool testParse(const std::string& str)
 {
     istringstream istrm(str);
-    Vector3d_T<T> vector3d;
-    istrm >> vector3d;
+    Vector3d_T<T> vector3d_t;
+    istrm >> vector3d_t;
     if (istrm.good())
     {
-        cout << "Read success: " << str << " -> " << vector3d << endl;
+        cout << "Read success: " << str << " -> " << vector3d_t << endl;
     }
     else
     {
-        cout << "Read error: " << str << " -> " << vector3d << endl;
+        cout << "Read error: " << str << " -> " << vector3d_t << endl;
     }
     return istrm.good();
 }
@@ -59,38 +55,4 @@ int main()
 
     testParse<double>("{1.2, 3.4, 5.6}");
     testParse<double>("{9, 4,5, 8.2}");
-}
-
-template <typename T>
-std::ostream& Vector3d_T<T>::writeTo(std::ostream& ostrm) const
-{
-    ostrm << leftBrace << x_ << separator << y_ << separator << z_ << rightBrace;
-    return ostrm;
-}
-
-template <typename T>
-std::istream& Vector3d_T<T>::readFrom(std::istream& istrm)
-{
-    char leftBrace(0);
-    int x(0);
-    char s(0);
-    int y(0);
-    int z(0);
-    char rightBrace(0);
-    istrm >> leftBrace >> x_ >> s >> y_ >> s >> z_ >> rightBrace;
-    if (istrm.good())
-    {
-        if ((Vector3d_T<T>::leftBrace == leftBrace) && (Vector3d_T<T>::separator == s)
-            && (Vector3d_T<T>::rightBrace == rightBrace))
-        {
-            x_ = x;
-            y_ = y;
-            z_ = z;
-        }
-        else
-        {
-            istrm.setstate(std::ios_base::failbit);
-        }
-    }
-    return istrm;
 }

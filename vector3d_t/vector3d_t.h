@@ -1,12 +1,8 @@
-//
-// Created by Roman Kochnev on 25.10.2017.
-//
-
+#pragma once
 #ifndef VECTOR3D_T_VECTOR3D_T_H
 #define VECTOR3D_T_VECTOR3D_T_H
 
 #include <iosfwd>
-#include <iostream>
 
 template <typename T>
 
@@ -14,20 +10,8 @@ struct Vector3d_T
 {
 public:
     Vector3d_T() = default;
-
-    Vector3d_T(const T x, const T y, const T z) //конструктор
-    {
-        x_ = x;
-        y_ = y;
-        z_ = z;
-    }
-
-    Vector3d_T(const Vector3d_T<T>& vector3d_t) //конструктор копирования
-    {
-        x_ = vector3d_t.x_;
-        y_ = vector3d_t.y_;
-        z_ = vector3d_t.z_;
-    }
+    Vector3d_T(const T x, const T y, const T z); //конструктор
+    Vector3d_T(const Vector3d_T<T>& vector3d_t); //конструктор копирования
 
     ~Vector3d_T() = default; //деструктор, уничтожение
 
@@ -47,17 +31,16 @@ public:
     Vector3d_T<T>& operator*=(const double& rhs); //умножение вектора на число
     Vector3d_T<T>& operator/=(const double& rhs); //деление вектора на число
 
-    std::ostream& writeTo(std::ostream& ostrm) const;
-    std::istream& readFrom(std::istream& istrm);
-
     T x_{ T() };
     T y_{ T() };
     T z_{ T() };
 
-
     static const char leftBrace{ '{' };
     static const char separator{ ',' };
     static const char rightBrace{ '}' };
+
+    std::ostream& writeTo(std::ostream& ostrm) const;
+    std::istream& readFrom(std::istream& istrm);
 };
 
 template <typename T>
@@ -70,6 +53,7 @@ Vector3d_T<T> scalarProduct(const Vector3d_T<T>& lhs, const Vector3d_T<T>& rhs);
 
 template <typename T>
 double length (const Vector3d_T<T>& rhs); //длина вектора
+
 
 template <typename T>
 inline std::ostream& operator << (std::ostream& ostrm, const Vector3d_T<T>& rhs)

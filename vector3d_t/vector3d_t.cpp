@@ -1,9 +1,23 @@
-//
-// Created by Roman Kochnev on 25.10.2017.
-//
-
 #include "vector3d_t.h"
+#include <iostream>
 #include <cmath>
+
+
+template <typename T>
+Vector3d_T::Vector3d_T(const T x, const T y, const T z) //конструктор
+{
+    x_ = x;
+    y_ = y;
+    z_ = z;
+}
+
+template <typename T>
+Vector3d_T::Vector3d_T(const Vector3d_T<T>& vector3d_t) //конструктор копирования
+{
+    x_ = vector3d_t.x_;
+    y_ = vector3d_t.y_;
+    z_ = vector3d_t.z_;
+}
 
 template <typename T>
 bool Vector3d_T<T>::operator==(const Vector3d_T<T>& rhs)
@@ -72,4 +86,37 @@ double length (const Vector3d_T<T>& rhs) //длина вектора
     return sqrt(pow(rhs.x_, 2) + pow(rhs.y_, 2) + pow(rhs.z_, 2));
 }
 
-//
+
+template <typename T>
+std::ostream& Vector3d_T<T>::writeTo(std::ostream& ostrm) const
+{
+    ostrm << leftBrace << x_ << separator << y_ << separator << z_ << rightBrace;
+    return ostrm;
+}
+
+template <typename T>
+std::istream& Vector3d_T<T>::readFrom(std::istream& istrm)
+{
+    char leftBrace(0);
+    int x(0);
+    char s(0);
+    int y(0);
+    int z(0);
+    char rightBrace(0);
+    istrm >> leftBrace >> x_ >> s >> y_ >> s >> z_ >> rightBrace;
+    if (istrm.good())
+    {
+        if ((Vector3d_T<T>::leftBrace == leftBrace) && (Vector3d_T<T>::separator == s)
+            && (Vector3d_T<T>::rightBrace == rightBrace))
+        {
+            x_ = x;
+            y_ = y;
+            z_ = z;
+        }
+        else
+        {
+            istrm.setstate(std::ios_base::failbit);
+        }
+    }
+    return istrm;
+}
