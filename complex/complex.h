@@ -1,4 +1,4 @@
-
+#pragma once
 #ifndef COMPLEX_COMPLEX_H
 #define COMPLEX_COMPLEX_H
 
@@ -41,6 +41,7 @@ Complex operator-(const Complex& lhs, const Complex& rhs);
 
 Complex operator*(const double lhs, const Complex& rhs);
 Complex operator*(const Complex& lhs, const double rhs);
+
 
 inline std::ostream& operator<<(std::ostream& ostrm, const Complex& rhs)
 {

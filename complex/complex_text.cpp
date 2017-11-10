@@ -6,18 +6,19 @@ bool testParse(const std::string& str)
 {
     using namespace std;
     istringstream istrm(str);
-    Complex z;
-    istrm >> z;
+    Complex complex;
+    istrm >> complex;
     if (istrm.good())
     {
-        cout << "Read success: " << str << " -> " << z << endl;
+        cout << "Read success: " << str << " -> " << complex << endl;
     }
     else
     {
-        cout << "Read error: " << str << " -> " << z << endl;
+        cout << "Read error: " << str << " -> " << complex << endl;
     }
     return istrm.good();
 }
+
 int main()
 {
     using namespace std;
@@ -89,34 +90,4 @@ int main()
     cout << " z != (2 + 8*i) = "<< (bool)b_2 << endl;
 
     return 0;
-}
-
-std::ostream& Complex::writeTo(std::ostream& ostrm) const
-{
-    ostrm << leftBrace << re << separator << im << rightBrace;
-    return ostrm;
-}
-
-std::istream& Complex::readFrom(std::istream& istrm)
-{
-    char leftBrace(0);
-    double real(0.0);
-    char comma(0);
-    double imaginary(0.0);
-    char rightBrace(0);
-    istrm >> leftBrace >> real >> comma >> imaginary >> rightBrace;
-    if (istrm.good())
-    {
-        if ((Complex::leftBrace == leftBrace) && (Complex::separator == comma)
-            && (Complex::rightBrace == rightBrace))
-        {
-            re = real;
-            im = imaginary;
-        }
-        else
-        {
-            istrm.setstate(std::ios_base::failbit);
-        }
-    }
-    return istrm;
 }
