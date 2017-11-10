@@ -1,8 +1,20 @@
-//
-// Created by Roman Kochnev on 29.09.2017.
-//
-
 #include "rational.h"
+#include <iostream>
+
+Rational::Rational(const int num) //Конструктор целого числа
+        : num_(num)
+{
+}
+
+Rational::Rational(const int num, const int denom) //Конструктор дробного числа
+        : num_(num),
+          denom_(denom)
+{
+    if (denom == 0)
+    {
+        throw "Знаменатель не может равняться нулю";
+    }
+}
 
 bool Rational::operator==(const Rational& rhs)
 {
@@ -40,6 +52,36 @@ Rational& Rational::operator/=(const Rational& rhs)
     denom_ = rhs.num_*denom_;
     if (num_== denom_) { num_ = 1, denom_ = 1; }
     return *this;
+}
+
+std::ostream& Rational::writeTo(std::ostream& ostrm) const
+{
+    ostrm << leftBrace << num_ << separator << denom_ << rightBrace;
+    return ostrm;
+}
+
+std::istream& Rational::readFrom(std::istream& istrm)
+{
+    char leftBrace(0);
+    int num(0);
+    char s(0);
+    int denom(0);
+    char rightBrace(0);
+    istrm >> leftBrace >> num_ >> s >> denom_ >> rightBrace;
+    if (istrm.good())
+    {
+        if ((Rational::leftBrace == leftBrace) && (Rational::separator == s)
+            && (Rational::rightBrace == rightBrace))
+        {
+            num_ = num;
+            denom_ = denom;
+        }
+        else
+        {
+            istrm.setstate(std::ios_base::failbit);
+        }
+    }
+    return istrm;
 }
 
 

@@ -1,7 +1,3 @@
-//
-// Created by Roman Kochnev on 29.09.2017.
-//
-
 #include "rational.h"
 #include <iostream>
 #include <sstream>
@@ -11,15 +7,15 @@ using  namespace std;
 bool testParse(const std::string& str)
 {
     istringstream istrm(str);
-    Rational r;
-    istrm >> r;
+    Rational rational;
+    istrm >> rational;
     if (istrm.good())
     {
-        cout << "Read success: " << str << " -> " << r << endl;
+        cout << "Read success: " << str << " -> " << rational << endl;
     }
     else
     {
-        cout << "Read error: " << str << " -> " << r << endl;
+        cout << "Read error: " << str << " -> " << rational << endl;
     }
     return istrm.good();
 }
@@ -49,34 +45,4 @@ int main()
     testParse("{4/ 3");
 
     return 0;
-}
-
-ostream& Rational::writeTo(std::ostream& ostrm) const
-{
-    ostrm << leftBrace << num_ << separator << denom_ << rightBrace;
-    return ostrm;
-}
-
-istream& Rational::readFrom(std::istream& istrm)
-{
-    char leftBrace(0);
-    int num(0);
-    char s(0);
-    int denom(0);
-    char rightBrace(0);
-    istrm >> leftBrace >> num_ >> s >> denom_ >> rightBrace;
-    if (istrm.good())
-    {
-        if ((Rational::leftBrace == leftBrace) && (Rational::separator == s)
-            && (Rational::rightBrace == rightBrace))
-        {
-            num_ = num;
-            denom_ = denom;
-        }
-        else
-        {
-            istrm.setstate(std::ios_base::failbit);
-        }
-    }
-    return istrm;
 }

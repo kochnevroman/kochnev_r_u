@@ -1,25 +1,15 @@
-//
-// Created by Roman Kochnev on 29.09.2017.
-//
-
+#pragma once
 #ifndef RATIONAL_RATIONAL_H
 #define RATIONAL_RATIONAL_H
 
 #include <iosfwd>
-#include <iostream>
 
 class Rational
 {
 public:
     Rational() {}
-    Rational(const int num) : num_(num) {}   //Конструктор для целого числа
-    Rational(const int num, const int denom) : num_(num), denom_(denom) //Конструктор для дробного числа
-    {
-        if (denom == 0)
-        {
-            throw "Знаменатель не может равняться нулю";
-        }
-    }
+    explicit Rational(const int num);  //Конструктор для целого числа
+    Rational( int num,  int denom); //Конструктор для дробного числа
 
     bool operator==(const Rational& rhs);
     bool operator!=(const Rational& rhs) { return !operator==(rhs); }
@@ -34,8 +24,8 @@ public:
     std::istream& readFrom(std::istream& istrm);
 
 private:
-int num_{ 0 };
-int denom_{ 1 };
+    int num_{ 0 }; //числитель
+    int denom_{ 1 }; //знаменатель
 
 static const char leftBrace{ '{' };
 static const char separator{ '/' };
