@@ -1,9 +1,20 @@
-//
-// Created by Roman Kochnev on 19.10.2017.
-//
-
 #include "vector3d.h"
 #include <cmath>
+#include <iostream>
+
+Vector3d::Vector3d(const double x, const double y, const double z) //конструктор
+{
+    x_ = x;
+    y_ = y;
+    z_ = z;
+}
+
+Vector3d::Vector3d(const Vector3d& vector3d) //конструктор копирования
+{
+    x_ = vector3d.x_;
+    y_ = vector3d.y_;
+    z_ = vector3d.z_;
+}
 
 bool Vector3d::operator==(const Vector3d& rhs)
 {
@@ -62,4 +73,35 @@ double length (const Vector3d& rhs) //длина вектора
     return sqrt(pow(rhs.x_, 2) + pow(rhs.y_, 2) + pow(rhs.z_, 2));
 }
 
-//
+
+std::ostream& Vector3d::writeTo(std::ostream& ostrm) const
+{
+    ostrm << leftBrace << x_ << separator << y_ << separator << z_ << rightBrace;
+    return ostrm;
+}
+
+std::istream& Vector3d::readFrom(std::istream& istrm)
+{
+    char leftBrace(0);
+    int x(0);
+    char s(0);
+    int y(0);
+    int z(0);
+    char rightBrace(0);
+    istrm >> leftBrace >> x_ >> s >> y_ >> s >> z_ >> rightBrace;
+    if (istrm.good())
+    {
+        if ((Vector3d::leftBrace == leftBrace) && (Vector3d::separator == s)
+            && (Vector3d::rightBrace == rightBrace))
+        {
+            x_ = x;
+            y_ = y;
+            z_ = z;
+        }
+        else
+        {
+            istrm.setstate(std::ios_base::failbit);
+        }
+    }
+    return istrm;
+}
