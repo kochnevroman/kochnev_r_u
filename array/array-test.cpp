@@ -1,7 +1,3 @@
-//
-// Created by Roman Kochnev on 25.10.2017.
-//
-
 #include "array.h"
 #include <iostream>
 #include <sstream>
@@ -27,12 +23,12 @@ bool testParse(const std::string& str)
 int main()
 {
     Array AB(5);
-    AB.Add(-6);
-    AB.Add(9);
-    AB.Add(0);
-    AB.Add(1);
-    AB.Add(0);
-    AB.Add(1);
+    AB.addFirst(-6);
+    AB.addFirst(9);
+    AB.addFirst(0);
+    AB.addFirst(1);
+    AB.addFirst(0);
+    AB.addLast(1);
     cout << AB;
     int t = 5;
     cin >> t;
