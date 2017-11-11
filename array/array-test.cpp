@@ -4,34 +4,37 @@
 
 using  namespace std;
 
-bool testParse(const std::string& str)
-{
-    istringstream istrm(str);
-    Array array;
-    istrm >> array;
-    if (istrm.good())
-    {
-        cout << "Read success: " << str << " -> " << array << endl;
-    }
-    else
-    {
-        cout << "Read error: " << str << " -> " << array << endl;
-    }
-    return istrm.good();
-}
-
 int main()
 {
-    Array AB(5);
-    AB.addFirst(-6);
-    AB.addFirst(9);
-    AB.addFirst(0);
-    AB.addFirst(1);
-    AB.addFirst(0);
-    AB.addLast(1);
-    cout << AB;
-    int t = 5;
-    cin >> t;
+    Array array(3);
+    //array[0] = 1;
+    //array[1] = 10;
+    //array[2] = 100;
+    array.addLast(5);
+    array.addLast(4);
+    array.addLast(110);
+    array.addLast(90);
+    array.resize(5);
+
+
+
+    Array testMassive2(array);
+    cout << array << endl;
+
+    cout << array.capacity() << endl;
+    cout << array.count() << endl;
+
+    array.sort();
+    cout << array << endl;
+
+    array.sort(DOWN);
+    cout << array << endl;
+
+    array.sort(UP);
+    cout << array << endl;
+
+
+    cout << array.isEmpty() << endl;
 
     return 0;
 }

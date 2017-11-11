@@ -2,7 +2,13 @@
 #define ARRAY_ARRAY_H
 
 #include <iosfwd>
-#include <opencl-c.h>
+#include <cstddef>
+
+enum choiceOfSort
+{
+    UP,
+    DOWN
+};
 
 class Array
 {
@@ -39,10 +45,12 @@ public:
     //удаление элемента массива по индексу
     void removeLast();
 
-    //сортировка массива по возрастанию
+    //сортировка массива по возрастанию (по умолчанию)
     void sort();
+
     //сортировка массива по убыванию
-    //void sort(int by);
+    void sort(choiceOfSort choice);
+
     //перестановка двух элементов массива
     void reshuffleElements(const ptrdiff_t& firstIndex, const ptrdiff_t& secondIndex);
 
@@ -50,7 +58,6 @@ public:
     bool isEmpty();
 
     std::ostream& writeTo(std::ostream& ostrm);
-    std::istream& readFrom(std::istream& istrm);
 
 private:
     ptrdiff_t size_{ 0 };
@@ -67,10 +74,5 @@ inline std::ostream& operator << (std::ostream& ostrm, Array& b)
     return b.writeTo(ostrm);
 }
 
-
-inline std::istream& operator >> (std::istream& istrm, Array& rhs)
-{
-    return rhs.readFrom(istrm);
-}
 
 #endif //ARRAY_ARRAY_H
