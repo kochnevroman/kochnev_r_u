@@ -81,7 +81,7 @@ void Array::resize(const int& newArraySize)
     }
 }
 
-void Array::addToIndex(const ptrdiff_t &newIndex, const int &newElement)
+void Array::addToIndex(const ptrdiff_t &newIndex, const int &newElement) //<--- хх.. какая-то
 {
     resize(int(size_) * 2);
     for (ptrdiff_t i = capacity_; i > newIndex+1; i--)
@@ -95,7 +95,7 @@ void Array::addToIndex(const ptrdiff_t &newIndex, const int &newElement)
     }
 }
 
-void Array::addFirst(const int &newElement)
+void Array::addFirst(const int &newElement) //<--- хх.. какая-то
 {
     resize(int(size_) );
     for (ptrdiff_t i = capacity_; i > 1; i++)
