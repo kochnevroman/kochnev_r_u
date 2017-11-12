@@ -22,14 +22,14 @@ bool Vector3d::operator==(const Vector3d& rhs)
     return((abs(rhs.x_ - x_) < eps0) && (abs(rhs.y_ - y_) < eps0) && (abs(rhs.z_ - z_) < eps0));
 }
 
-Vector3d& Vector3d:: operator+=(const Vector3d& rhs) //прибавление к текущему вектору вектор
+Vector3d& Vector3d::operator+=(const Vector3d& rhs) //прибавление к текущему вектору вектор
 {
     x_ = rhs.x_ + x_;
     y_ = rhs.y_ + y_;
     z_ = rhs.z_ + z_;
     return *this;
 }
-Vector3d& Vector3d:: operator-=(const Vector3d& rhs) //вычитание из текущего вектора вектор
+Vector3d& Vector3d::operator-=(const Vector3d& rhs) //вычитание из текущего вектора вектор
 {
     x_ = x_ - rhs.x_;
     y_ = y_ - rhs.y_;
@@ -37,7 +37,7 @@ Vector3d& Vector3d:: operator-=(const Vector3d& rhs) //вычитание из �
     return *this;
 }
 
-Vector3d& Vector3d:: operator*=(const double& rhs) //умножение вектора на число
+Vector3d& Vector3d::operator*=(const double& rhs) //умножение вектора на число
 {
     x_ = x_ * rhs;
     y_ = y_ * rhs;
@@ -45,7 +45,7 @@ Vector3d& Vector3d:: operator*=(const double& rhs) //умножение вект
     return *this;
 }
 
-Vector3d& Vector3d:: operator/=(const double& rhs) //деление вектора на число
+Vector3d& Vector3d::operator/=(const double& rhs) //деление вектора на число
 {
     x_ = x_ / rhs;
     y_ = y_ / rhs;
@@ -60,7 +60,7 @@ Vector3d operator+(const Vector3d& lhs, const Vector3d& rhs) //сложение 
 
 Vector3d operator-(const Vector3d& lhs, const Vector3d& rhs) //вычитание двух векторов
 {
-    return Vector3d(lhs.x_ - rhs.x_, lhs.y_ - rhs.y_, lhs.z_ - rhs.z_);
+    return Vector3d(lhs.x_ - rhs.x_,y_ - rhs.y_, lhs.z_ - rhs.z_);
 }
 
 Vector3d scalarProduct(const Vector3d& lhs, const Vector3d& rhs) //скалярное произведение двух векторов

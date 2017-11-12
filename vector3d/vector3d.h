@@ -52,6 +52,7 @@ Vector3d operator-(const Vector3d& lhs, const Vector3d& rhs); //вычитани
 Vector3d scalarProduct(const Vector3d& lhs, const Vector3d& rhs); //скалярное произведение двух векторов
 double length (const Vector3d& rhs); //длина вектора
 
+
 inline std::ostream& operator << (std::ostream& ostrm, const Vector3d& rhs)
 {
     return rhs.writeTo(ostrm);
