@@ -38,7 +38,7 @@ struct Quaternion
 
     //кватернионное сопряжение
     Quaternion conjugating();
-    //Модуль
+    //модуль
     double module();
     //детерминант квартериона, представимого в матричном виде
     double det();

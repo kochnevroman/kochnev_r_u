@@ -48,10 +48,10 @@ int main()
     cout << "Сумма кватерниона (3, 4, 7, 12) и кватерниона (1, 2, 6, 9) = " << sumOperation << endl;
 
     Quaternion subOperation = quaternion1 - quaternion2;
-    cout << "Разность кватерниона (3, 4, 7, 12) и кватерниона (1, 2, 6, 9) = " << sumOperation << endl;
+    cout << "Разность кватерниона (3, 4, 7, 12) и кватерниона (1, 2, 6, 9) = " << subOperation << endl;
 
     Quaternion multiOperation = quaternion1 * quaternion2;
-    cout << "Умножение кватерниона (3, 4, 7, 11) и кватерниона (1, 2, 6, 9) = " << sumOperation << endl << endl;
+    cout << "Умножение кватерниона (3, 4, 7, 11) и кватерниона (1, 2, 6, 9) = " << multiOperation << endl << endl;
 
     cout << "Сопряженный кватернион кватерниону (3, 4, 7, 12) = " << quaternion1.conjugating() << endl;
 
