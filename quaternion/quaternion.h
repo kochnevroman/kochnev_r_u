@@ -17,6 +17,10 @@ struct Quaternion
     double c_ { 0.0 };
     double d_ { 0.0 };
 
+    static const char leftBrace{ '{' };
+    static const char separator{ ',' };
+    static const char rightBrace{ '}' };
+
     Quaternion operator=(const Quaternion& quaternion);
 
     bool operator==(const Quaternion& quaternion);
@@ -32,8 +36,12 @@ struct Quaternion
     std::ostream& writeTo(std::ostream& ostrm) const;
     std::istream& readFrom(std::istream& istrm);
 
+    //кватернионное сопряжение
+    Quaternion conjugating();
+    //Модуль
+    double module();
+    //детерминант квартериона, представимого в матричном виде
     double det();
-
 };
 
 
@@ -43,9 +51,6 @@ Quaternion operator-(const Quaternion& firstQuaternion, const Quaternion& second
 Quaternion operator*(const Quaternion& firstQuaternion, const Quaternion& secondQuaternion);
 Quaternion operator*(const Quaternion& quaternion, const double number);
 Quaternion operator*(const double number, const Quaternion& quaternion);
-
-Quaternion operator/(const Quaternion& firstQuaternion, const Quaternion& secondQuaternion);
-Quaternion operator/(const Quaternion& quaternion, const double number);
 
 
 inline std::ostream& operator << (std::ostream& ostrm, const Quaternion& rhs)
