@@ -19,6 +19,7 @@ struct Quaternion
 
     static const char leftBrace{ '{' };
     static const char separator{ ',' };
+    static const char space{' '};
     static const char rightBrace{ '}' };
 
     Quaternion operator=(const Quaternion& quaternion);
