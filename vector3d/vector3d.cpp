@@ -60,7 +60,7 @@ Vector3d operator+(const Vector3d& lhs, const Vector3d& rhs) //сложение 
 
 Vector3d operator-(const Vector3d& lhs, const Vector3d& rhs) //вычитание двух векторов
 {
-    return Vector3d(lhs.x_ - rhs.x_,y_ - rhs.y_, lhs.z_ - rhs.z_);
+    return Vector3d(lhs.x_ - rhs.x_, lhs.y_ - rhs.y_, lhs.z_ - rhs.z_);
 }
 
 Vector3d scalarProduct(const Vector3d& lhs, const Vector3d& rhs) //скалярное произведение двух векторов
@@ -76,7 +76,7 @@ double length (const Vector3d& rhs) //длина вектора
 
 std::ostream& Vector3d::writeTo(std::ostream& ostrm) const
 {
-    ostrm << leftBrace << x_ << separator << y_ << separator << z_ << rightBrace;
+    ostrm << leftBrace << x_ << separator << space << y_ << separator << space << z_ << rightBrace;
     return ostrm;
 }
 
@@ -84,14 +84,15 @@ std::istream& Vector3d::readFrom(std::istream& istrm)
 {
     char leftBrace(0);
     int x(0);
-    char s(0);
+    char separator(0);
+    char space(0);
     int y(0);
     int z(0);
     char rightBrace(0);
-    istrm >> leftBrace >> x_ >> s >> y_ >> s >> z_ >> rightBrace;
+    istrm >> leftBrace >> x_ >> separator >> space >> y_ >> separator >> space >> z_ >> rightBrace;
     if (istrm.good())
     {
-        if ((Vector3d::leftBrace == leftBrace) && (Vector3d::separator == s)
+        if ((Vector3d::leftBrace == leftBrace) && (Vector3d::separator == separator)
             && (Vector3d::rightBrace == rightBrace))
         {
             x_ = x;

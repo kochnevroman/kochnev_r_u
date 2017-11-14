@@ -46,6 +46,12 @@ int main()
     Vector3d vec_a(3, 4, 5);
     Vector3d vec_b(1, 2, 6);
 
+    Vector3d sumOperation = vec_a + vec_b;
+    cout << "Сумма вектора (3, 4, 5) и вектора (1, 2, 6) = " << sumOperation << endl;
+
+    Vector3d subOperation = vec_a - vec_b;
+    cout << "Разность вектора (3, 4, 5) и вектора (1, 2, 6) = " << subOperation << endl;
+
     Vector3d vec_a_b(scalarProduct(vec_a, vec_b));
     cout << "Скалярное произведение vec_a (3, 4, 5) на vec_b (1, 2, 6) = " << vec_a_b  << endl;
 

@@ -40,6 +40,7 @@ public:
 
     static const char leftBrace{ '{' };
     static const char separator{ ',' };
+    static  const char space { ' ' };
     static const char rightBrace{ '}' };
 
     //friend Vector3d scalarProduct(const Vector3d& lhs, const Vector3d& rhs); //скалярное произведение двух векторов
