@@ -140,7 +140,7 @@ Quaternion operator*(const double number, const Quaternion& quaternion)
 
 std::ostream& Quaternion::writeTo(std::ostream& ostrm) const
 {
-    ostrm << leftBrace << a_ << space << separator << space << b_ << space << separator << space  << c_ << space << separator << space << d_ << rightBrace;
+    ostrm << leftBrace << a_ << separator << space << b_ << separator << space  << c_ << separator << space << d_ << rightBrace;
     return ostrm;
 }
 
@@ -154,7 +154,7 @@ std::istream& Quaternion::readFrom(std::istream& istrm)
     double b(0.0);
     double c(0.0);
     double d(0.0);
-    istrm >> leftBrace >> a_ >> space >> separator >> space >> b_ >> space >> separator >> space >> c_ >> space >> separator >> space >> d_ >> rightBrace;
+    istrm >> leftBrace >> a_ >> separator >> space >> b_ >> separator >> space >> c_ >> separator >> space >> d_ >> rightBrace;
     if (istrm.good())
     {
         if ((Quaternion::leftBrace == leftBrace) && (Quaternion::separator == separator)
