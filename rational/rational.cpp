@@ -21,6 +21,11 @@ bool Rational::operator==(const Rational& rhs)
     return(num_ *rhs.denom_ == rhs.num_*denom_);
 }
 
+bool Rational::operator!=(const Rational &rhs)
+{
+    return !operator==(rhs);
+}
+
 Rational& Rational::operator+=(const Rational& rhs)
 {
     num_ = num_*rhs.denom_ + rhs.num_*denom_;
@@ -53,6 +58,31 @@ Rational& Rational::operator/=(const Rational& rhs)
     if (num_== denom_) { num_ = 1, denom_ = 1; }
     return *this;
 }
+
+Rational operator+(const Rational& lhs, const Rational& rhs) //?
+{
+    if (lhs.num_ + rhs.num_ == lhs.denom_ + rhs.denom_) { return Rational(1.0, 1.0); }
+    return Rational(lhs.num_ + rhs.num_, lhs.denom_ + rhs.denom_);
+}
+
+Rational operator-(const Rational& lhs, const Rational& rhs) //?
+{
+    if (lhs.num_ - rhs.num_ == lhs.denom_ - rhs.denom_) { return Rational(1.0, 1.0); }
+    return Rational(lhs.num_ - rhs.num_, lhs.denom_ - rhs.denom_);
+}
+
+Rational operator*(const Rational& lhs, const Rational& rhs) //?
+{
+    if (lhs.num_ * rhs.num_ == lhs.denom_ * rhs.denom_) { return Rational(1.0, 1.0); }
+    return Rational(lhs.num_ * rhs.num_, lhs.denom_ * rhs.denom_);
+}
+
+Rational operator/(const Rational& lhs, const Rational& rhs) //?
+{
+    if (lhs.num_ / rhs.num_ == lhs.denom_ / rhs.denom_) { return Rational(1.0, 1.0); }
+    return Rational(lhs.num_ / rhs.num_, lhs.denom_ / rhs.denom_);
+}
+
 
 std::ostream& Rational::writeTo(std::ostream& ostrm) const
 {

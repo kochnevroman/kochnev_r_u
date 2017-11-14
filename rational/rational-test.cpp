@@ -22,8 +22,12 @@ bool testParse(const std::string& str)
 
 int main()
 {
+    testParse("{12/13}");
+    testParse("{7/ 11}");
+    testParse("{4/ 3");
+
     Rational rational(3, 4);
-    cout << endl << "Исходное число: " << rational << endl << endl;
+    cout << endl << "Исходное рациональное число: " << rational << endl << endl;
 
     rational += Rational(1, 4);
     cout << "rational + 1/4 = " << rational << endl;
@@ -40,9 +44,18 @@ int main()
     rational += Rational(35, 36);
     cout << "rational + 35/36 =" << rational << endl << endl;
 
-    testParse("{12/13}");
-    testParse("{7/ 11}");
-    testParse("{4/ 3");
+    Rational rational1(3, 4);
+    Rational rational2(1, 2);
+
+    cout << "Сумма rational1(3, 4) и rational2(1, 2) = " << rational1 + rational2 << endl;
+    cout << "Разность rational1(3, 4) и rational2(1, 2) = " << rational1 - rational2 << endl;
+    cout << "Произведение rational1(3, 4) и rational2(1, 2) = " << rational1 * rational2 << endl;
+    cout << "Отношение (3, 4) и rational2(1, 2) = " << rational1 / rational2 << endl << endl;
+
+    Rational rational3(5, 8);
+    Rational rational4(3, 8);
+
+    cout << "Сумма rational3(5, 8) и rational4(3, 8) = " << rational3 + rational4 << endl;
 
     return 0;
 }
