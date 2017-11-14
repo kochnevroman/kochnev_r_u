@@ -22,6 +22,9 @@ bool testParse(const std::string& str)
 
 int main()
 {
+    testParse("{1.2, 3.4, 5.6}");
+    testParse("{9, 4,5, 8.2}");
+
     bool b_1 = Vector3d(3.1, 4.2, 7.9) == Vector3d(3.1, 4.2, 7.9);
     cout << "(3.1, 4.2, 7.9) == (3.1, 4.2, 7.9) = " << b_1 << endl;
 
@@ -52,12 +55,11 @@ int main()
     Vector3d subOperation = vec_a - vec_b;
     cout << "Разность вектора (3, 4, 5) и вектора (1, 2, 6) = " << subOperation << endl;
 
-    Vector3d vec_a_b(scalarProduct(vec_a, vec_b));
+    //добавить остальные операции
+
+    double vec_a_b(scalarProduct(vec_a, vec_b));
     cout << "Скалярное произведение vec_a (3, 4, 5) на vec_b (1, 2, 6) = " << vec_a_b  << endl;
 
     double resultOfLength = length(vec_a);
     cout << "Длина вектора vec_a = " << resultOfLength  << endl << endl;
-
-    testParse("{1.2, 3.4, 5.6}");
-    testParse("{9, 4,5, 8.2}");
 }

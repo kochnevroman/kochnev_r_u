@@ -16,10 +16,24 @@ Vector3d::Vector3d(const Vector3d& vector3d) //конструктор копир
     z_ = vector3d.z_;
 }
 
+Vector3d Vector3d::operator=(const Vector3d &vector3d)
+{
+    x_ = vector3d.x_;
+    y_ = vector3d.y_;
+    z_ = vector3d.z_;
+
+    return *this;
+}
+
 bool Vector3d::operator==(const Vector3d& rhs)
 {
     double eps0 = 0.00001;
     return((abs(rhs.x_ - x_) < eps0) && (abs(rhs.y_ - y_) < eps0) && (abs(rhs.z_ - z_) < eps0));
+}
+
+bool Vector3d::operator!=(const Vector3d &rhs)
+{
+    return !operator==(rhs);
 }
 
 Vector3d& Vector3d::operator+=(const Vector3d& rhs) //прибавление к текущему вектору вектор
@@ -63,9 +77,9 @@ Vector3d operator-(const Vector3d& lhs, const Vector3d& rhs) //вычитани�
     return Vector3d(lhs.x_ - rhs.x_, lhs.y_ - rhs.y_, lhs.z_ - rhs.z_);
 }
 
-Vector3d scalarProduct(const Vector3d& lhs, const Vector3d& rhs) //скалярное произведение двух векторов
+double scalarProduct(const Vector3d& lhs, const Vector3d& rhs) //скалярное произведение двух векторов
 {
-    return Vector3d(lhs.x_ * rhs.x_, lhs.y_ * rhs.y_, lhs.z_ * rhs.z_);
+    return (lhs.x_ * rhs.x_, lhs.y_ * rhs.y_, lhs.z_ * rhs.z_);
 }
 
 double length (const Vector3d& rhs) //длина вектора
