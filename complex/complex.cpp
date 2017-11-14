@@ -1,5 +1,6 @@
 #include "complex.h"
 #include <iostream>
+#include <cmath>
 
 Complex::Complex(const double real) : Complex(real, 0.0) //конструктор только для действительной части, мнимая по умолчанию 0.0
 {
@@ -11,17 +12,27 @@ Complex::Complex(const double real, const double imaginary) //конструкт
     im = imaginary;
 }
 
+bool Complex::operator==(const Complex &rhs) const
+{
+    double eps0 = 0.0000001;
+    return (abs(re - rhs.re) < eps0 ) && (abs(im - rhs.im) < eps0);
+}
+
+bool Complex::operator!=(const Complex &rhs) const
+{
+    return !operator==(rhs);
+}
+
 Complex& Complex::operator+=(const Complex& rhs)
 {
     re += rhs.re;
     im += rhs.im;
     return *this;
 }
-Complex operator+(const Complex& lhs, const Complex& rhs)
+
+Complex& Complex::operator+=(const double rhs)
 {
-    Complex sum(lhs);
-    sum += rhs;
-    return sum;
+    return operator+=(Complex(rhs));
 }
 
 Complex& Complex::operator-=(const Complex& rhs)
@@ -31,12 +42,97 @@ Complex& Complex::operator-=(const Complex& rhs)
     return *this;
 }
 
-Complex operator-(const Complex& lhs, const Complex& rhs)
+Complex& Complex::operator-=(const double rhs)
+{
+    return operator-=(Complex(rhs));
+}
+
+Complex& Complex::operator*=(const Complex& rhs)
+{
+    double h(re);
+
+    re = rhs.re*h - rhs.im*im;
+    im = rhs.re*im + rhs.im*h;
+
+    return *this;
+}
+
+Complex& Complex::operator*=(const double rhs)
+{
+    re *= rhs;
+    im *= rhs;
+
+    return *this;
+}
+
+Complex& Complex::operator/=(const Complex& rhs)
+{
+    double h(re);
+    double k(im);
+
+    re = (rhs.re*h + rhs.im*k) / (rhs.re*rhs.re + rhs.im*rhs.im);
+    im = (rhs.im*h - rhs.re*k) / (rhs.re*rhs.re + rhs.im*rhs.im);
+
+    return *this;
+}
+
+Complex& Complex::operator/=(const double rhs)
+{
+    re /= rhs;
+    im /= rhs;
+
+    return *this;
+}
+
+Complex Complex::conjugateNumber()
+{
+    Complex complex;
+    complex.re = re;
+    complex.im = -im;
+    return complex;
+}
+
+Complex operator+(const Complex& lhs, const Complex& rhs)  //плюс
+{
+    Complex sum(lhs);
+    sum += rhs;
+    return sum;
+}
+
+Complex operator+(const double number, const Complex& rhs)
+{
+    Complex sum(rhs);
+    sum += number;
+    return sum;
+}
+
+Complex operator+(const Complex& rhs, const double number)
+{
+    Complex sum(rhs);
+    sum += number;
+    return sum;
+}
+
+Complex operator-(const Complex& lhs, const Complex& rhs) //минус
 {
     return Complex(lhs.re - rhs.re, lhs.im - rhs.im);
 }
 
-Complex operator*(const Complex& lhs, const Complex& rhs)
+Complex operator-(const double number, const Complex& rhs)
+{
+    Complex sum(rhs);
+    sum -= number;
+    return sum;
+}
+
+Complex operator-(const Complex& lhs, const double number)
+{
+    Complex sum(lhs);
+    sum -= number;
+    return sum;
+}
+
+Complex operator*(const Complex& lhs, const Complex& rhs) //умножение
 {
     return Complex(lhs.re * rhs.re - lhs.im * rhs.im, lhs.re * rhs.im + rhs.im * lhs.re);
 }
@@ -58,59 +154,10 @@ Complex operator*(const double lhs, const Complex& rhs)
     return Complex(a.re * rhs.re - a.im * rhs.im, a.re * rhs.im + rhs.im * a.re);
 }
 
-Complex& Complex::operator*=(const double rhs)
-{
-    re *= rhs;
-    im *= rhs;
-
-    return *this;
-}
-
-Complex& Complex::operator*=(const Complex& rhs)
-{
-    double h(re);
-
-    re = rhs.re*h - rhs.im*im;
-    im = rhs.re*im + rhs.im*h;
-
-    return *this;
-}
-
-Complex& Complex::operator/=(const double rhs)
-{
-    re /= rhs;
-    im /= rhs;
-
-    return *this;
-}
-
-Complex& Complex::operator/=(const Complex& rhs)
-{
-    double h(re);
-    double k(im);
-
-    re = (rhs.re*h + rhs.im*k) / (rhs.re*rhs.re + rhs.im*rhs.im);
-    im = (rhs.im*h - rhs.re*k) / (rhs.re*rhs.re + rhs.im*rhs.im);
-
-    return *this;
-}
-
-Complex operator/(const Complex& lhs, const Complex& rhs)
-{
-    return Complex((rhs.re*lhs.re + rhs.im*lhs.im) / (lhs.re*lhs.re + lhs.im*lhs.im), (rhs.im*lhs.re - rhs.re*lhs.im) / (lhs.re*lhs.re + lhs.im*lhs.im));
-}
-
-Complex operator+(const double k, const Complex& rhs)
-{
-    Complex sum(rhs);
-    sum += k;
-    return sum;
-}
-
 
 std::ostream& Complex::writeTo(std::ostream& ostrm) const
 {
-    ostrm << leftBrace << re << separator << im << rightBrace;
+    ostrm << leftBrace << re << separator << space << im << rightBrace;
     return ostrm;
 }
 
