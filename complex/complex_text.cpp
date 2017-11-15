@@ -99,7 +99,7 @@ int main()
     cout << "Разность complex1(3.8, 2.1) и number(3.5) = " << complex1 - number << endl;
     cout << "Разность number(3.5) и complex1(3.8, 2.1) = " << number - complex1 << endl << endl;
 
-    cout << "Произведение complex1(3.8, 2.1) и complex2(12.0, 5.5) = " << complex1 * complex2 << endl;
+   // cout << "Произведение complex1(3.8, 2.1) и complex2(12.0, 5.5) = " << complex1 * complex2 << endl;
     cout << "Произведение complex1(3.8, 2.1) и 3.5 = " << complex1 * number << endl;
     cout << "Произведение 3.5 и complex1(3.8, 2.1) = " << number * complex1 << endl << endl;
 

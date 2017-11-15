@@ -47,12 +47,13 @@ Complex& Complex::operator-=(const double rhs)
     return operator-=(Complex(rhs));
 }
 
-Complex& Complex::operator*=(const Complex& rhs)
+Complex& Complex::operator*=(const Complex& rhs) //проверить
 {
     double h(re);
 
     re = rhs.re*h - rhs.im*im;
     im = rhs.re*im + rhs.im*h;
+    //lhs.re * a.re - lhs.im * a.im, lhs.re * a.im + a.im * lhs.re
 
     return *this;
 }
@@ -65,7 +66,7 @@ Complex& Complex::operator*=(const double rhs)
     return *this;
 }
 
-Complex& Complex::operator/=(const Complex& rhs)
+Complex& Complex::operator/=(const Complex& rhs) //проверить
 {
     double h(re);
     double k(im);
@@ -84,6 +85,7 @@ Complex& Complex::operator/=(const double rhs)
     return *this;
 }
 
+//сопряженное комплексное число
 Complex Complex::conjugateNumber()
 {
     Complex complex;
@@ -154,6 +156,30 @@ Complex operator*(const double lhs, const Complex& rhs)
     return Complex(a.re * rhs.re - a.im * rhs.im, a.re * rhs.im + rhs.im * a.re);
 }
 
+Complex operator/(const Complex& lhs, const Complex& rhs)
+{
+
+}
+
+Complex operator/(const double lhs, const Complex& rhs)
+{
+
+}
+
+Complex operator/(const Complex& lhs, const double rhs)
+{
+
+}
+
+Complex operator^(const Complex& complex, const double exponent)
+{
+
+}
+
+Complex root (const Complex& complex, const double degreeOfRoot)
+{
+
+}
 
 std::ostream& Complex::writeTo(std::ostream& ostrm) const
 {
