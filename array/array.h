@@ -15,7 +15,7 @@ class Array
 public:
     Array() = default; //дефолтный конструктор
     Array(const ptrdiff_t & size); //конструктор
-    Array(const Array & rhs); //конструктор копирования
+    Array(const Array & array); //конструктор копирования
 
     ~Array(); //деструктор
 
