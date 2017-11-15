@@ -74,15 +74,15 @@ void Array::resize(const int& newArraySize)
         size_ = newArraySize;
     }
     else {
-        int *newarr = new int[newArraySize];
+        int *newArray = new int[newArraySize];
 
         for (ptrdiff_t i(0); i < newArraySize; i++)
         {
-            newarr[i] = pdata[i];
+            newArray[i] = pdata[i];
         }
 
         delete[] pdata;
-        pdata = newarr;
+        pdata = newArray;
         size_ = newArraySize;
         capacity_ = newArraySize;
     }

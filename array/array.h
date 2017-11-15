@@ -6,8 +6,8 @@
 
 enum choiceOfSort
 {
-    UP,
-    DOWN
+    UP, // максимальный - последний
+    DOWN// минимальный - последний
 };
 
 class Array

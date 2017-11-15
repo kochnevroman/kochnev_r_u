@@ -17,12 +17,14 @@ int main()
     array.addLast(17);
     array.addLast(19);
     array.addLast(21);
+
     array.addFirst(25);
     array.addFirst(29);
-    //array.resize(5);
-    //array.addToIndex(3, 31);
 
     //добавить тест resize()
+    //array.resize(5);
+    
+    //array.addToIndex(3, 31);
 
     Array testMassive2(array);
     cout << testMassive2 << endl;
