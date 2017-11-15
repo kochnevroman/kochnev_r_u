@@ -49,8 +49,12 @@ Vector3d operator*(const double number, const Vector3d& lhs); //произвед
 
 Vector3d operator/(const Vector3d& lhs, const double number); //отношение вектора и числа
 
-double scalarProduct(const Vector3d& lhs, const Vector3d& rhs); //скалярное произведение двух векторов
-double length (const Vector3d& rhs); //длина вектора
+//скалярное произведение двух векторов
+double scalarProduct(const Vector3d& lhs, const Vector3d& rhs);
+//длина вектора
+double length (const Vector3d& rhs);
+//косинус угла между векторами
+double cosineOfAngle (const Vector3d& firstVector3d, const Vector3d& secondVector3d);
 
 
 inline std::ostream& operator << (std::ostream& ostrm, const Vector3d& rhs)

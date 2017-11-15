@@ -77,6 +77,24 @@ Vector3d operator-(const Vector3d& lhs, const Vector3d& rhs) //вычитани�
     return Vector3d(lhs.x_ - rhs.x_, lhs.y_ - rhs.y_, lhs.z_ - rhs.z_);
 }
 
+Vector3d operator*(const Vector3d& lhs, const double number) //произведение вектора и числа
+{
+    Vector3d vector3d (lhs);
+    return (vector3d *= number);
+}
+
+Vector3d operator*(const double number, const Vector3d& lhs) //произведение вектора и числа
+{
+    Vector3d vector3d (lhs);
+    return (vector3d *= number);
+}
+
+Vector3d operator/(const Vector3d& lhs, const double number) //отношение вектора и числа
+{
+    Vector3d vector3d (lhs);
+    return (vector3d /= number);
+}
+
 double scalarProduct(const Vector3d& lhs, const Vector3d& rhs) //скалярное произведение двух векторов
 {
     return (lhs.x_ * rhs.x_, lhs.y_ * rhs.y_, lhs.z_ * rhs.z_);
@@ -85,6 +103,17 @@ double scalarProduct(const Vector3d& lhs, const Vector3d& rhs) //скалярн�
 double length (const Vector3d& rhs) //длина вектора
 {
     return sqrt(pow(rhs.x_, 2) + pow(rhs.y_, 2) + pow(rhs.z_, 2));
+}
+
+double cosineOfAngle (const Vector3d& firstVector3d, const Vector3d& secondVector3d)
+{
+    double firstLength = length(firstVector3d);
+    double secondLength = length(secondVector3d);
+
+    if (firstLength != 0 && secondLength != 0) {
+        return scalarProduct(firstVector3d, secondVector3d) / (firstLength * secondLength);
+    }
+    return 1;
 }
 
 

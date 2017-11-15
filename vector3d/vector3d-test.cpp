@@ -48,18 +48,26 @@ int main()
 
     Vector3d vec_a(3, 4, 5);
     Vector3d vec_b(1, 2, 6);
+    Vector3d vec_c(5, 7.5, 25);
+    Vector3d vec_d(0, 0, 0);
+    double number(2.5);
 
-    Vector3d sumOperation = vec_a + vec_b;
-    cout << "Сумма вектора (3, 4, 5) и вектора (1, 2, 6) = " << sumOperation << endl;
+    cout << "Сумма вектора (3, 4, 5) и вектора (1, 2, 6) = " << vec_a + vec_b << endl;
+    cout << "Разность вектора (3, 4, 5) и вектора (1, 2, 6) = " << vec_a - vec_b << endl << endl;
 
-    Vector3d subOperation = vec_a - vec_b;
-    cout << "Разность вектора (3, 4, 5) и вектора (1, 2, 6) = " << subOperation << endl;
+    cout << "Произведение вектора (3, 4, 5) и числа 2.5 = " << vec_a * number << endl;
+    cout << "Произведение числа 2.5 и вектора (3, 4, 5) = " << number * vec_a << endl << endl;
 
-    //добавить остальные операции
+    cout << "Отношение вектора (5, 7.5, 25) и числа 2.5 = " << vec_c / number << endl;
 
     double vec_a_b(scalarProduct(vec_a, vec_b));
-    cout << "Скалярное произведение vec_a (3, 4, 5) на vec_b (1, 2, 6) = " << vec_a_b  << endl;
+    cout << "Скалярное произведение vec_a(3, 4, 5) на vec_b(1, 2, 6) = " << vec_a_b  << endl;
 
     double resultOfLength = length(vec_a);
-    cout << "Длина вектора vec_a = " << resultOfLength  << endl << endl;
+    cout << "Длина вектора vec_a(3, 4, 5) = " << resultOfLength  << endl << endl;
+
+    double resultOfCosineAngle = cosineOfAngle(vec_a, vec_b);
+    cout << "Косинус между вектором vec_a(3, 4, 5) и vec_b(1, 2, 6) = cos(" << resultOfCosineAngle <<')' << endl;
+    double resultOfCosineAnglewithZeroLength = cosineOfAngle(vec_c, vec_d);
+    cout << "Косинус между вектором vec_c(5, 7.5, 25) и vec_d(0, 0, 0) = cos(" << resultOfCosineAnglewithZeroLength <<')' << endl << endl;
 }
