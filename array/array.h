@@ -52,7 +52,7 @@ public:
     void sort(choiceOfSort choice);
 
     //перестановка двух элементов массива
-    void reshuffleElements(const ptrdiff_t& firstIndex, const ptrdiff_t& secondIndex);
+    void reshuffleOfElements(const ptrdiff_t& firstIndex, const ptrdiff_t& secondIndex);
 
     //Проверка на пустоту
     bool isEmpty();

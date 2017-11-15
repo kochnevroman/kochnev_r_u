@@ -21,6 +21,7 @@ int main()
     array.addFirst(29);
     //array.resize(5);
     //array.addToIndex(3, 31);
+
     //добавить тест resize()
 
     Array testMassive2(array);
@@ -48,7 +49,7 @@ int main()
     cout << array.count() << endl << endl;
 
     cout << "Перестановка элементов array[1] и array[5]: " << endl;
-    array.reshuffleElements(1, 5);
+    array.reshuffleOfElements(1, 5);
     cout << array << endl << endl;
 
     cout << "Умолчательная сортировка массива по возрастанию: " << endl;

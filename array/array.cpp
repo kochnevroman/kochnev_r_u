@@ -252,7 +252,7 @@ void Array::sort(choiceOfSort choice) {
     }
 }
 
-void Array::reshuffleElements(const ptrdiff_t &firstIndex, const ptrdiff_t &secondIndex)
+void Array::reshuffleOfElements(const ptrdiff_t &firstIndex, const ptrdiff_t &secondIndex)
 {
     //добавить проверку на соответствие secondIndex границе массива
     int *newArray = new int[size_];
