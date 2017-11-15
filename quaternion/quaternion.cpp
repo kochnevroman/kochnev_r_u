@@ -113,10 +113,8 @@ Quaternion operator+(const Quaternion& firstQuaternion, const Quaternion& second
 
 Quaternion operator-(const Quaternion& firstQuaternion, const Quaternion& secondQuaternion)
 {
-    return Quaternion(firstQuaternion.a_ - secondQuaternion.a_,
-                      firstQuaternion.b_ - secondQuaternion.b_,
-                      firstQuaternion.c_ - secondQuaternion.c_,
-                      firstQuaternion.d_ - secondQuaternion.d_);
+    Quaternion quaternion (firstQuaternion);
+    return (quaternion -= secondQuaternion);
 }
 
 Quaternion operator*(const Quaternion& firstQuaternion, const Quaternion& secondQuaternion)

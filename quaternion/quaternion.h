@@ -34,15 +34,15 @@ struct Quaternion
     Quaternion& operator*=(const double number);
     Quaternion& operator/=(const double number);
 
-    std::ostream& writeTo(std::ostream& ostrm) const;
-    std::istream& readFrom(std::istream& istrm);
-
     //кватернионное сопряжение
     Quaternion conjugating();
     //модуль
     double module();
     //детерминант квартериона, представимого в матричном виде
     double det();
+
+    std::ostream& writeTo(std::ostream& ostrm) const;
+    std::istream& readFrom(std::istream& istrm);
 };
 
 

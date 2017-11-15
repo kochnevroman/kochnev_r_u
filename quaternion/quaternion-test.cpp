@@ -22,9 +22,11 @@ bool testParse(const std::string& str)
 
 int main()
 {
+    testParse("{1.2, 3.4, 5.6, 7,9}");
+    testParse("{9, 4.5, 8.2, 7}");
 
     bool b_1 = Quaternion(3.1, 4.2, 7.9, 5.8) == Quaternion(3.1, 4.2, 7.9, 5.8);
-    cout << "(3.1, 4.2, 7.9, 5.8) == (3.1, 4.2, 7.9, 5.8) = " << b_1 << endl;
+    cout << endl << "(3.1, 4.2, 7.9, 5.8) == (3.1, 4.2, 7.9, 5.8) = " << b_1 << endl;
 
     bool b_2 = Quaternion(3.1, 4.2, 7.9, 5.8) != Quaternion(3.1, 4.2, 7.0, 5.8);
     cout << "(3.1, 4.2, 7.9, 5.8) != (3.1, 4.2, 7.0) = " << b_2 << endl << endl;
@@ -47,20 +49,14 @@ int main()
     Quaternion sumOperation = quaternion1 + quaternion2;
     cout << "Сумма кватерниона (3, 4, 7, 12) и кватерниона (1, 2, 6, 9) = " << sumOperation << endl;
 
-    Quaternion subOperation = quaternion1 - quaternion2;
-    cout << "Разность кватерниона (3, 4, 7, 12) и кватерниона (1, 2, 6, 9) = " << subOperation << endl;
-
-    Quaternion multiOperation = quaternion1 * quaternion2;
-    cout << "Умножение кватерниона (3, 4, 7, 11) и кватерниона (1, 2, 6, 9) = " << multiOperation << endl << endl;
+    cout << "Разность кватерниона (3, 4, 7, 12) и кватерниона (1, 2, 6, 9) = " << quaternion1 - quaternion2 << endl;
+    cout << "Умножение кватерниона (3, 4, 7, 11) и кватерниона (1, 2, 6, 9) = " << quaternion1 * quaternion2 << endl << endl;
 
     cout << "Сопряженный кватернион кватерниону (3, 4, 7, 12) = " << quaternion1.conjugating() << endl;
 
     cout << "Модуль кватерниона (3, 4, 7, 12) = " << quaternion1.module() << endl;
 
     cout << "Определитель матричного представления кватерниона (3, 4, 7, 12) = " << quaternion1.det() << endl << endl;
-
-    testParse("{1.2, 3.4, 5.6, 7,9}");
-    testParse("{9, 4.5, 8.2, 7}");
 
     return  0;
 }
