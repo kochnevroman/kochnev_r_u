@@ -21,34 +21,35 @@ int main()
     array.addFirst(25);
     array.addFirst(29);
 
-    //добавить тест resize()
-    //array.resize(5);
-    
-    //array.addToIndex(3, 31);
+    cout << "Массив после добавления в конец последовательно 3-х элементов, потом в начало 2-х элементов: " << endl;
+    cout << array << endl << endl;
 
-    Array testMassive2(array);
-    cout << testMassive2 << endl;
+    array.addToIndex(3, 31);
 
-    cout << array.capacity() << endl;
-    cout << array.count() << endl << endl;
+    cout << "Добавление в массив значение 31 по индексу 3: " << endl;
+    cout << array;
+
+    cout << "  Capacity = " << array.capacity() << "; Count = " << array.count() << endl << endl;
 
     array.removeFirst();
-    cout << array << endl;
-
-    cout << array.capacity() << endl;
-    cout << array.count() << endl << endl;
+    cout << "Удаление из массива первого элемент: " << endl;
+    cout << array << endl << endl;
 
     array.removeLast();
-    cout << array << endl;
-
-    cout << array.capacity() << endl;
-    cout << array.count() << endl << endl;
+    cout << "Удаление из массива последнего элемент: " << endl;
+    cout << array << endl << endl;
 
     array.removeAtIndex(4);
-    cout << array << endl;
+    cout << "Удаление из массива элемента с индексом 4: " << endl;
+    cout << array << endl << endl;
 
-    cout << array.capacity() << endl;
-    cout << array.count() << endl << endl;
+    array.removeAtIndex(89);
+    cout << "Удаление из массива элемента с индексом 89: " << endl;
+    cout << array << endl << endl;
+
+    array.removeAtIndex(-13);
+    cout << "Удаление из массива элемента с индексом -13: " << endl;
+    cout << array << endl << endl;
 
     cout << "Перестановка элементов array[1] и array[5]: " << endl;
     array.reshuffleOfElements(1, 5);
@@ -66,7 +67,17 @@ int main()
     array.sort(UP);
     cout << array << endl << endl;
 
-    cout << "Проверка массива array на пустоту: " << array.isEmpty() << endl;
+    cout << "Проверка массива array на пустоту: " << array.isEmpty() << endl << endl;
+
+    //добавить тест resize()
+    array.resize(15);
+    cout << "Новый размер массива resize(15): " << endl;
+    cout << "Capacity = " << array.capacity() << "; Count = " << array.count() << endl << endl;
+
+    array.resize(5);
+    cout << "Новый размер массива resize(5): " << endl;
+    cout << "Capacity = " << array.capacity() << "; Count = " << array.count() << endl << endl;
+
 
     return 0;
 }

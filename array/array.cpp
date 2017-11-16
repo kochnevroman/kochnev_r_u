@@ -100,6 +100,7 @@ void Array::addToIndex(const ptrdiff_t &newIndex, const int &newElement)
     {
         addLast(newElement);
     }
+
     else {
         int *newArray = new int[size_ + 1];
 
@@ -109,7 +110,7 @@ void Array::addToIndex(const ptrdiff_t &newIndex, const int &newElement)
 
         newArray[newIndex] = newElement;
 
-        for (ptrdiff_t i(newIndex + 1); i < size_; i++) {
+        for (ptrdiff_t i(newIndex + 1); i < size_ + 1; i++) {
             newArray[i] = pdata[i - 1];
         }
 
@@ -174,6 +175,16 @@ void Array::removeAtIndex(const ptrdiff_t &removableElementIndex)
         capacity_ = size_;
         delete[] pdata;
         pdata = newArray;
+    }
+
+    if (removableElementIndex > size_)
+    {
+        removeLast();
+    }
+
+    if (removableElementIndex < 0)
+    {
+        removeFirst();
     }
 }
 
