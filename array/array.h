@@ -26,7 +26,6 @@ public:
     const int& operator[](const ptrdiff_t index) const;
 
     ptrdiff_t count() const { return size_; }
-    ptrdiff_t capacity() const { return capacity_; }
 
     //новый размер массива
     void resize(const int& newArraySize);
@@ -61,7 +60,6 @@ public:
 
 private:
     ptrdiff_t size_{ 0 };
-    ptrdiff_t capacity_{ 0 };
     int* pdata{ nullptr };
 
     static const char leftBrace{ '[' };

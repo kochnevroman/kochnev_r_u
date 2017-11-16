@@ -11,13 +11,12 @@ Array::Array(const Array & array) //конструктор копировани�
 {
     pdata = new int[array.size_];
 
-    for (ptrdiff_t i(0); i < array.capacity_; i++)
+    for (ptrdiff_t i(0); i < array.size_; i++)
     {
         pdata[i] = array[i];
     }
 
     size_ = array.size_;
-    capacity_ = array.capacity_;
 }
 
 Array::~Array() //деструктор
@@ -26,7 +25,6 @@ Array::~Array() //деструктор
     pdata = nullptr;
 
     size_ = 0;
-    capacity_ = 0;
 }
 
 int& Array::operator[](const ptrdiff_t index)
@@ -41,30 +39,29 @@ const int& Array::operator[](const ptrdiff_t index) const
 
 Array& Array::operator=(const Array & array)
 {
-    if (pdata == array.pdata && array.size_ == size_ && array.capacity_ == capacity_)
+    if (pdata == array.pdata && array.size_ == size_)
     {
         return *this;
     }
 
     pdata = new int[array.size_];
 
-    for (ptrdiff_t i(0); i < array.capacity_; i++)
+    for (ptrdiff_t i(0); i < array.size_; i++)
     {
         pdata[i] = array[i];
     }
 
     size_ = array.size_;
-    capacity_ = array.capacity_;
     return *this;
 }
 
 void Array::resize(const int& newArraySize)
 {
-    if (capacity_ < newArraySize)
+    if (size_ < newArraySize)
     {
         int *newArray = new int[newArraySize];
 
-        for (ptrdiff_t i(0); i < capacity_; i++)
+        for (ptrdiff_t i(0); i < size_; i++)
         {
             newArray[i] = pdata[i];
         }
@@ -84,7 +81,6 @@ void Array::resize(const int& newArraySize)
         delete[] pdata;
         pdata = newArray;
         size_ = newArraySize;
-        capacity_ = newArraySize;
     }
 }
 
@@ -115,7 +111,6 @@ void Array::addToIndex(const ptrdiff_t &newIndex, const int &newElement)
         }
 
         size_ += 1;
-        capacity_ = size_;
         delete[] pdata;
         pdata = newArray;
     }
@@ -133,7 +128,6 @@ void Array::addFirst(const int &newElement)
     }
 
     size_ += 1;
-    capacity_ = size_;
     delete[] pdata;
     pdata = newArray;
 }
@@ -150,7 +144,6 @@ void Array::addLast(const int &newElement)
     newArray[size_] = newElement;
 
     size_ += 1;
-    capacity_ = size_;
     delete[] pdata;
     pdata = newArray;
 }
@@ -172,7 +165,6 @@ void Array::removeAtIndex(const ptrdiff_t &removableElementIndex)
         }
 
         size_ -= 1;
-        capacity_ = size_;
         delete[] pdata;
         pdata = newArray;
     }
@@ -198,7 +190,6 @@ void Array::removeFirst()
     }
 
     size_ -= 1;
-    capacity_ = size_;
     delete[] pdata;
     pdata = newArray;
 }
@@ -213,18 +204,17 @@ void Array::removeLast()
     }
 
     size_ -= 1;
-    capacity_ = size_;
     delete[] pdata;
     pdata = newArray;
 }
 
 void Array::sort() {
-    for (ptrdiff_t i = 0; i < capacity_ - 1; i++)
+    for (ptrdiff_t i = 0; i < size_ - 1; i++)
     {
 
         int elementMin = pdata[i];
         ptrdiff_t indexMin = i;
-        for (ptrdiff_t j = i + 1; j < capacity_; j++)
+        for (ptrdiff_t j = i + 1; j < size_; j++)
         {
             if (pdata[j] < elementMin)
             {
@@ -243,12 +233,12 @@ void Array::sort(choiceOfSort choice) {
             Array::sort();
             break;
         case DOWN:
-            for (ptrdiff_t i = 0; i < capacity_ - 1; i++)
+            for (ptrdiff_t i = 0; i < size_ - 1; i++)
             {
 
                 int elementMax = pdata[i];
                 ptrdiff_t indexMax = i;
-                for (ptrdiff_t j = i + 1; j < capacity_; j++)
+                for (ptrdiff_t j = i + 1; j < size_; j++)
                 {
                     if (pdata[j] > elementMax)
                     {
