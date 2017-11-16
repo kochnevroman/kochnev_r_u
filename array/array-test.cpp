@@ -21,7 +21,7 @@ int main()
     array.addFirst(25);
     array.addFirst(29);
 
-    cout << "Массив после добавления в конец последовательно 3-х элементов, потом в начало 2-х элементов: " << endl;
+    cout << "Массив после добавления в конец последовательно 3-х элементов, затем в начало 2-х элементов: " << endl;
     cout << array << endl << endl;
 
     array.addToIndex(3, 31);
@@ -29,7 +29,7 @@ int main()
     cout << "Добавление в массив значение 31 по индексу 3: " << endl;
     cout << array;
 
-    cout << " -> Размер массива = " << array.count() << endl << endl;
+    cout << "->  Размер массива = " << array.count() << endl << endl;
 
     array.removeFirst();
     cout << "Удаление из массива первого элемент: " << endl;
@@ -53,6 +53,10 @@ int main()
 
     cout << "Перестановка элементов array[1] и array[5]: " << endl;
     array.reshuffleOfElements(1, 5);
+    cout << array << endl << endl;
+
+    cout << "Перестановка элементов array[-1] и array[99]: " << endl;
+    array.reshuffleOfElements(-1, 99);
     cout << array << endl << endl;
 
     cout << "Умолчательная сортировка массива по возрастанию: " << endl;

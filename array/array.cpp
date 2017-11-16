@@ -84,7 +84,6 @@ void Array::resize(const int& newArraySize)
     }
 }
 
-//проверить, что-то работает направильно, в конец всегда ставляет ноль (0)
 void Array::addToIndex(const ptrdiff_t &newIndex, const int &newElement)
 {
     if (newIndex < 0) //если индекс < 0, вставить первым элементом
@@ -255,20 +254,21 @@ void Array::sort(choiceOfSort choice) {
 
 void Array::reshuffleOfElements(const ptrdiff_t &firstIndex, const ptrdiff_t &secondIndex)
 {
-    //добавить проверку на соответствие secondIndex границе массива
-    int *newArray = new int[size_];
+    if (firstIndex > 0 && firstIndex < size_ && secondIndex > 0 && secondIndex < size_) {
+        int *newArray = new int[size_];
 
-    for (ptrdiff_t i(0); i < size_; i++)
-    {
-        newArray[i] = pdata[i];
+        for (ptrdiff_t i(0); i < size_; i++) {
+            newArray[i] = pdata[i];
+        }
+
+        int bufferVariable = newArray[firstIndex];
+        newArray[firstIndex] = newArray[secondIndex];
+        newArray[secondIndex] = bufferVariable;
+
+        delete[] pdata;
+        pdata = newArray;
     }
-
-    int bufferVariable = newArray[firstIndex];
-    newArray[firstIndex] = newArray[secondIndex];
-    newArray[secondIndex] = bufferVariable;
-
-    delete[] pdata;
-    pdata = newArray;
+    else return;
 }
 
 bool Array::isEmpty() {
