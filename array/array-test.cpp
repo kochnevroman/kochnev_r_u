@@ -29,7 +29,7 @@ int main()
     cout << "Добавление в массив значение 31 по индексу 3: " << endl;
     cout << array;
 
-    cout << "Count = " << array.count() << endl << endl;
+    cout << " -> Размер массива = " << array.count() << endl << endl;
 
     array.removeFirst();
     cout << "Удаление из массива первого элемент: " << endl;
@@ -72,11 +72,11 @@ int main()
     //добавить тест resize()
     array.resize(15);
     cout << "Новый размер массива resize(15): " << endl;
-    cout << "Count = " << array.count() << endl << endl;
+    cout << " Размер массива = " << array.count() << endl << endl;
 
     array.resize(5);
     cout << "Новый размер массива resize(5): " << endl;
-    cout << "Count = " << array.count() << endl << endl;
+    cout << " Размер массива = " << array.count() << endl << endl;
 
     return 0;
 }
