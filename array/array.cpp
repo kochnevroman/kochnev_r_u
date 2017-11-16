@@ -23,7 +23,6 @@ Array::~Array() //деструктор
 {
     delete[] pdata;
     pdata = nullptr;
-
     size_ = 0;
 }
 
