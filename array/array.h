@@ -7,7 +7,7 @@
 enum choiceOfSort
 {
     UP, // максимальный - последний
-    DOWN// минимальный - последний
+    DOWN // минимальный - последний
 };
 
 class Array
@@ -15,11 +15,11 @@ class Array
 public:
     Array() = default; //дефолтный конструктор
     Array(const ptrdiff_t & size); //конструктор
-    Array(const Array & array); //конструктор копирования
+    Array(const Array& array); //конструктор копирования
 
     ~Array(); //деструктор
 
-    Array& operator=(const Array& a); //оператор присваивания
+    Array& operator=(const Array& array); //оператор присваивания
 
     //доступ по индексу
     int& operator[](const ptrdiff_t index);
@@ -28,7 +28,7 @@ public:
     ptrdiff_t count() const { return size_; }
 
     //новый размер массива
-    void resize(const int& newArraySize);
+    void resize(const ptrdiff_t& newArraySize);
 
     //добавление в любое место массива
     void addToIndex(const ptrdiff_t& newIndex, const int& newElement);

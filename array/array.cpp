@@ -54,7 +54,7 @@ Array& Array::operator=(const Array & array)
     return *this;
 }
 
-void Array::resize(const int& newArraySize)
+void Array::resize(const ptrdiff_t& newArraySize)
 {
     if (size_ < newArraySize)
     {
