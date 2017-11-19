@@ -59,7 +59,7 @@ Complex operator/(const Complex& lhs, const double rhs);
 //возведение в степень
 Complex operator^(const Complex& complex, double exponent);
 //извлечение корня
-Complex root (const Complex& complex, const double degreeOfRoot)ч;
+Complex root (const Complex& complex, const double degreeOfRoot);
 
 
 inline std::ostream& operator<<(std::ostream& ostrm, const Complex& rhs)
