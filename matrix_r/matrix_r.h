@@ -41,9 +41,18 @@ public:
     //добавление столбца
     void addCol(const ptrdiff_t& newColIndex, const double& newCol);
 
-    //удаление строки
+    //удаление первой строки
+    void removeRowFirst();
+    //удаление последней строки
+    void removeRowLast();
+    //удаление произвольной строки
     void removeRow(const ptrdiff_t& removableRowIndex);
-    //удаление столбца
+
+    //удаление первого столбца
+    void removeColFirst();
+    //удаление последнего столбца
+    void removeColLast();
+    //удаление произвольного столбца
     void removeCol(const ptrdiff_t& removableColIndex);
 
     //умножение строки на число

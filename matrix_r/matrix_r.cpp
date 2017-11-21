@@ -176,7 +176,7 @@ void Matrix_R::determinant() {
 
 void Matrix_R::transpose()
 {
- /*   double newMatrix = *new double [nRow_];
+    double** newMatrix = new double*[nRow_];
 
     for (ptrdiff_t i = 0; i < nRow_; i++)
     {
@@ -191,7 +191,7 @@ void Matrix_R::transpose()
         }
     }
     delete[] pdata_;
-    pdata_ = newMatrix; */
+    pdata_ = newMatrix;
 }
 
 void Matrix_R::resize(const ptrdiff_t &newNumberOfLines, const ptrdiff_t & newNumberOfColumns) {
@@ -206,12 +206,100 @@ void Matrix_R::addCol(const ptrdiff_t &newColIndex, const double& newCol) {
 
 }
 
-void Matrix_R::removeRow(const ptrdiff_t &removableRowIndex) {
+void Matrix_R::removeRowFirst()
+{
+    double **newMatrix = new double *[nRow_ - 1];
+
+    for (ptrdiff_t i = 0; i < nRow_ - 1; i++)
+    {
+        newMatrix[i] = new double[nCol_];
+    }
+
+    for (ptrdiff_t i = 0; i < nRow_ - 1; i++)
+    {
+        for (ptrdiff_t j = 0; j < nCol_; j++)
+        {
+            newMatrix[i][j] = pdata_[i + 1][j];
+        }
+
+        delete[] pdata_;
+        pdata_ = newMatrix;
+    }
+}
+
+void Matrix_R::removeRowLast() {
 
 }
 
-void Matrix_R::removeCol(const ptrdiff_t &removableColIndex) {
+void Matrix_R::removeRow(const ptrdiff_t &removableRowIndex)
+{
+    if (removableRowIndex >= 0 && removableRowIndex < nRow_)
+    {
+        double **newMatrix = new double *[nRow_ - 1];
 
+        for (ptrdiff_t i = 0; i < nRow_ - 1; i++)
+        {
+            newMatrix[i] = new double[nCol_];
+        }
+
+        for (ptrdiff_t i = 0; i < removableRowIndex; i++)
+        {
+            for (ptrdiff_t j = 0; j < nCol_; j++)
+            {
+                newMatrix[i][j] = pdata_[i][j];
+            }
+        }
+
+        for (ptrdiff_t i = removableRowIndex; i < nRow_ - 1; i++)
+        {
+            for (ptrdiff_t j = 0; j < nCol_; j++)
+            {
+                newMatrix[i][j] = pdata_[i + 1][j];
+            }
+        }
+
+        delete[] pdata_;
+        pdata_ = newMatrix;
+    }
+    else {
+        throw ("неправильный номер строки");
+    }
+
+}
+
+void Matrix_R::removeColFirst() {
+
+}
+
+void Matrix_R::removeColLast() {
+
+}
+
+void Matrix_R::removeCol(const ptrdiff_t &removableColIndex)
+{
+    if (removableColIndex > 0 && removableColIndex < nCol_)
+    {
+        double **newMatrix = new double *[nRow_ - 1];
+
+        for (ptrdiff_t i = 0; i < nRow_; i++)
+        {
+            newMatrix[i] = new double[nCol_ - 1];
+        }
+
+        for (ptrdiff_t i = 0; i < nRow_; i++)
+        {
+            for (ptrdiff_t j = 0; j < nCol_; j++)
+            {
+                pdata_[i][j] = pdata_[i][j];
+            }
+        }
+
+        delete[] pdata_;
+        pdata_ = newMatrix;
+    }
+    else {
+        throw ("неправильный номер столбца");
+    }
 }
 
 void Matrix_R::multiplyNumberToRow(const double &number) {
