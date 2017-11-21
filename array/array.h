@@ -25,7 +25,8 @@ public:
     int& operator[](const ptrdiff_t index);
     const int& operator[](const ptrdiff_t index) const;
 
-    ptrdiff_t count() const { return size_; }
+    //получение размера массива
+    ptrdiff_t& count() const;
 
     //новый размер массива
     void resize(const ptrdiff_t& newArraySize);

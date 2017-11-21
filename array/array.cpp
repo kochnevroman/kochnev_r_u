@@ -36,6 +36,11 @@ const int& Array::operator[](const ptrdiff_t index) const
     return pdata[index];
 }
 
+ptrdiff_t& Array::count() const
+{
+    return size_;
+}
+
 Array& Array::operator=(const Array & array)
 {
     if (pdata == array.pdata && array.size_ == size_)
