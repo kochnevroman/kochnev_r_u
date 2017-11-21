@@ -29,33 +29,28 @@ public:
     //операции матрицы с числом
     Matrix_R operator*=(const double& number);
 
-private:
-    ptrdiff_t  nRow_ { 0 };
-    ptrdiff_t  nCol_ { 0 };
-    double** pdata_ { nullptr };
-
-    const ptrdiff_t& nRow() const;
-    const ptrdiff_t& nCol() const;
+    const ptrdiff_t& getRowCount() const;
+    const ptrdiff_t& getColCount() const;
 
     void determinant();
     void transpose();
     void resize(const ptrdiff_t& newNumberOfLines, const ptrdiff_t& newNumberOfColumns);
 
     //добавление строки
-    void addRow(const ptrdiff_t& newRowIndex, const double& newRow[]);
+    void addRow(const ptrdiff_t& newRowIndex, const double& newRow);
     //добавление столбца
-    void addCol(const ptrdiff_t& newColIndex, const int& newCol[]);
+    void addCol(const ptrdiff_t& newColIndex, const double& newCol);
 
     //удаление строки
     void removeRow(const ptrdiff_t& removableRowIndex);
     //удаление столбца
     void removeCol(const ptrdiff_t& removableColIndex);
 
-    //умножение на число строки
+    //умножение строки на число
     void multiplyNumberToRow(const double& number);
 
+    //умножение столбца на число
     void multiplyNumberToCol(const double& number);
-    //умножение на число столбца
 
     //перестановка двух строк
     void reshuffleTwoRows(const ptrdiff_t& firstRow, const ptrdiff_t& secondRow);
@@ -63,8 +58,12 @@ private:
     //перестановка двух столбцов
     void reshuffleTwoCols(const ptrdiff_t& firstCol, const ptrdiff_t& secondCol);
 
-
     std::ostream& writeTo(std::ostream& ostrm ) const;
+
+private:
+    ptrdiff_t  nRow_ { 0 };
+    ptrdiff_t  nCol_ { 0 };
+    double** pdata_ { nullptr };
 };
 
 //операции матрицы с матрицей
@@ -76,8 +75,8 @@ Matrix_R operator*(const Matrix_R& firstMatrix, const Matrix_R& secondMatrix);
 //
 
 //операции матрицы с числом
-Matrix_R operator*(const Matrix_R& matrix1, const double& number);
-Matrix_R operator*(const double& number, const Matrix_R& matrix2);
+Matrix_R operator*(const Matrix_R& matrix_r, const double& number);
+Matrix_R operator*(const double& number, const Matrix_R& matrix_r);
 
 
 inline std::ostream& operator<<(std::ostream& ostrm, const Matrix_R& matrix_r)

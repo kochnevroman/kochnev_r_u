@@ -2,22 +2,19 @@
 #include <iostream>
 #include <stdexcept>
 
-Matrix_R::Matrix_R(const ptrdiff_t &nRow, const ptrdiff_t &nCol) {
-    if (nRow < 0 || nCol < 0)
-    {
-        throw ("Количество строк или столбцов не может быть отрицательным");
-    }
-    else {
+Matrix_R::Matrix_R(const ptrdiff_t &nRow, const ptrdiff_t &nCol)
+{
+    if (nRow > 0 && nCol > 0) {
         nRow_ = nRow;
         nCol_ = nCol;
 
-        pdata_ = new double*[nRow_];
-        pdata_[0] = new double[nRow_ * nCol_];
-        for (ptrdiff_t i = 0; i < nCol_ - 2; i += 1)
-        {
-            pdata_[i + 1] = pdata_[i] + nCol_;
+        pdata_ = new double *[nRow_];
+        for (ptrdiff_t i = 0; i < nRow_; i++) {
+            pdata_[i] = new double[nCol_];
         }
     }
+    else
+        throw ("Число строк или столбцов не может быть отрицательным");
 
 }
 
@@ -49,12 +46,25 @@ Matrix_R::~Matrix_R()
     pdata_ = nullptr;
 }
 
-double& Matrix_R::at(const ptrdiff_t iRow, const ptrdiff_t iCol) {
+double& Matrix_R::at(const ptrdiff_t iRow, const ptrdiff_t iCol)
+{
+    if (iRow >= 0 && iCol >= 0 && iRow < nRow_ && iCol < nCol_)
+    {
+        return pdata_[iRow][iCol];
+    }
+    else
+        throw("Неправильный индекс элемента");
 
 }
 
-const double& Matrix_R::at(const ptrdiff_t iRow, const ptrdiff_t iCol) const {
-
+const double& Matrix_R::at(const ptrdiff_t iRow, const ptrdiff_t iCol) const
+{
+    if (iRow >= 0 && iCol >= 0 && iRow < nRow_ && iCol < nCol_)
+    {
+        return pdata_[iRow][iCol];
+    }
+    else
+        throw("Неправильный индекс элемента");
 }
 
 //операции матрицы с матрицей
@@ -64,13 +74,13 @@ Matrix_R Matrix_R::operator=(const Matrix_R &matrix_r)
     nRow_ = matrix_r.nRow_;
     pdata_ = new double* [nRow_];
 
-    for (ptrdiff_t i = 0; i < nRow_; i += 1)
+    for (ptrdiff_t i = 0; i < nRow_; i++)
     {
         pdata_[i] = new double[nCol_];
     }
-    for (ptrdiff_t i = 0; i < nRow_; i += 1)
+    for (ptrdiff_t i = 0; i < nRow_; i++)
     {
-        for (ptrdiff_t j = 0; j < nCol_; j += 1)
+        for (ptrdiff_t j = 0; j < nCol_; j++)
         {
             pdata_[i][j] = matrix_r.pdata_[i][j];
         }
@@ -79,9 +89,9 @@ Matrix_R Matrix_R::operator=(const Matrix_R &matrix_r)
     return *this;
 }
 
-Matrix_R Matrix_R::operator+=(const Matrix_R &matrix_r)
+Matrix_R Matrix_R::operator+=(const Matrix_R& matrix_r)
 {
-    if (nRow_ == matrix_r.nRow_ || nCol_ == matrix_r.nRow_)
+    if (nRow_ == matrix_r.nRow_ && nCol_ == matrix_r.nCol_)
     {
         for (ptrdiff_t i = 0; i < nRow_; i++)
         {
@@ -90,6 +100,7 @@ Matrix_R Matrix_R::operator+=(const Matrix_R &matrix_r)
                 pdata_[i][j] += matrix_r.pdata_[i][j];
             }
         }
+        return *this;
     }
 
     else {
@@ -98,7 +109,7 @@ Matrix_R Matrix_R::operator+=(const Matrix_R &matrix_r)
 }
 
 Matrix_R Matrix_R::operator-=(const Matrix_R &matrix_r) {
-    if (nRow_ == matrix_r.nRow_ || nCol_ == matrix_r.nRow_)
+    if (nRow_ == matrix_r.nRow_ || nCol_ == matrix_r.nCol_)
     {
         for (ptrdiff_t i = 0; i < nRow_; i++)
         {
@@ -107,6 +118,7 @@ Matrix_R Matrix_R::operator-=(const Matrix_R &matrix_r) {
                 pdata_[i][j] -= matrix_r.pdata_[i][j];
             }
         }
+        return *this;
     }
 
     else {
@@ -114,21 +126,46 @@ Matrix_R Matrix_R::operator-=(const Matrix_R &matrix_r) {
     }
 }
 
-Matrix_R Matrix_R::operator*=(const Matrix_R &matrix_r) {
-
+Matrix_R Matrix_R::operator*=(const Matrix_R &matrix_r)
+{
+    if (nRow_ == matrix_r.nCol_ && nCol_ == matrix_r.nRow_)
+    {
+        for (ptrdiff_t i = 0; i < nRow_; i++)
+        {
+            for (ptrdiff_t j = 0; j < nCol_; j++)
+            {
+                for (ptrdiff_t inner = 0; inner < 3; inner++)
+                {
+                    pdata_[i][j] += pdata_[i][inner] * matrix_r.pdata_[inner][j];
+                }
+            }
+        }
+        return *this;
+    }
+    else {
+        throw ("Матрицы невозможно перемножить");
+    }
 }
 
 //операции матрицы с числом
-Matrix_R Matrix_R::operator*=(const double &number) {
-
+Matrix_R Matrix_R::operator*=(const double &number)
+{
+    for (ptrdiff_t i = 0; i < nRow_; i++)
+    {
+        for (ptrdiff_t j = 0; j < nCol_; j++)
+        {
+            pdata_[i][j] *= number;
+        }
+    }
+    return *this;
 }
 
-const ptrdiff_t& Matrix_R::nRow() const
+const ptrdiff_t& Matrix_R::getRowCount() const
 {
     return nRow_;
 }
 
-const ptrdiff_t& Matrix_R::nCol() const
+const ptrdiff_t& Matrix_R::getColCount() const
 {
     return nCol_;
 }
@@ -137,19 +174,35 @@ void Matrix_R::determinant() {
 
 }
 
-void Matrix_R::transpose() {
+void Matrix_R::transpose()
+{
+ /*   double newMatrix = *new double [nRow_];
 
+    for (ptrdiff_t i = 0; i < nRow_; i++)
+    {
+        newMatrix[i] = new double[nCol_];
+    }
+
+    for (ptrdiff_t i = 0; i < nCol_; i++)
+    {
+        for (ptrdiff_t j = 0; j < nRow_; j++)
+        {
+            newMatrix[i][j] = pdata_[i][j];
+        }
+    }
+    delete[] pdata_;
+    pdata_ = newMatrix; */
 }
 
 void Matrix_R::resize(const ptrdiff_t &newNumberOfLines, const ptrdiff_t & newNumberOfColumns) {
 
 }
 
-void Matrix_R::addRow(const ptrdiff_t &newRowIndex, const double &*newRow) {
+void Matrix_R::addRow(const ptrdiff_t &newRowIndex, const double& newRow) {
 
 }
 
-void Matrix_R::addCol(const ptrdiff_t &newColIndex, const int &*newCol) {
+void Matrix_R::addCol(const ptrdiff_t &newColIndex, const double& newCol) {
 
 }
 
@@ -169,11 +222,23 @@ void Matrix_R::multiplyNumberToCol(const double &number) {
 
 }
 
-void Matrix_R::reshuffleTwoRows(const ptrdiff_t &firstRow, const ptrdiff_t &secondRow) {
+void Matrix_R::reshuffleTwoRows(const ptrdiff_t &firstRow, const ptrdiff_t &secondRow)
+{
+    if (firstRow > 0 && firstRow < nRow_ && secondRow > 0 && secondRow < nRow_)
+    {
+    }
+    else
+        throw("Неправильный номер строки");
 
 }
 
-void Matrix_R::reshuffleTwoCols(const ptrdiff_t &firstCol, const ptrdiff_t &secondCol) {
+void Matrix_R::reshuffleTwoCols(const ptrdiff_t &firstCol, const ptrdiff_t &secondCol)
+{
+    if (firstCol > 0 && firstCol < nRow_ && secondCol > 0 && secondCol < nRow_)
+    {
+    }
+    else
+        throw("Неправильный номер столбца");
 
 }
 
@@ -194,6 +259,19 @@ Matrix_R operator*(const Matrix_R& firstMatrix, const Matrix_R& secondMatrix)
     Matrix_R matrix_r(firstMatrix);
     return  matrix_r *= secondMatrix;
 }
+
+Matrix_R operator*(const Matrix_R& matrix_r, const double& number)
+{
+    Matrix_R matrix(matrix_r);
+    return  matrix *= number;
+}
+
+Matrix_R operator*(const double& number, const Matrix_R& matrix_r)
+{
+    Matrix_R matrix(matrix_r);
+    return  matrix *= number;
+}
+
 
 std::ostream& Matrix_R::writeTo(std::ostream& ostrm) const
 {
