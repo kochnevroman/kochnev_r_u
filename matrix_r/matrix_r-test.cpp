@@ -44,12 +44,11 @@ int main()
     //matrix_r1.removeRowFirst();
     //cout << "Удаление первой строки из matrix_r1: " << "\n" << matrix_r1 << endl;
 
-    cout << "matrix_r1 + matrix_r2: " << "\n" << matrix_r1 + matrix_r2 << endl;
+    cout << "Сумма matrix_r1 + matrix_r2: " << "\n" << matrix_r1 + matrix_r2 << endl;
 
-    cout << "matrix_r1 + matrix_r2: " << "\n" << matrix_r1 + matrix_r2 << endl;
+    cout << "Разность matrix_r1 - matrix_r2: " << "\n" << matrix_r1 - matrix_r2 << endl;
 
-    cout << "matrix_r1 * matrix_r2: " << "\n" << matrix_r1 * matrix_r2 << endl;
-
+    cout << "Произведение matrix_r1 * matrix_r2: " << "\n" << matrix_r1 * matrix_r2 << endl;
 
     return 0;
 }
