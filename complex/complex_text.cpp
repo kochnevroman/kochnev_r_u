@@ -4,24 +4,20 @@
 
 using namespace std;
 
-bool testParse(const std::string& str)
-{
+bool testParse(const std::string& str) {
     istringstream istrm(str);
     Complex complex;
     istrm >> complex;
-    if (istrm.good())
-    {
+    if (istrm.good()) {
         cout << "Read success: " << str << " -> " << complex << endl;
     }
-    else
-    {
+    else {
         cout << "Read error: " << str << " -> " << complex << endl;
     }
     return istrm.good();
 }
 
-int main()
-{
+int main() {
     testParse("{8.9,9}");
     testParse("{8.9, 9}");
     testParse("{8.9, 9");
