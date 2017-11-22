@@ -62,7 +62,12 @@ Complex operator^(const Complex& complex, double exponent);
 Complex root (const Complex& complex, const double degreeOfRoot);
 
 
-inline std::ostream& operator<<(std::ostream& ostrm, const Complex& rhs);
-inline std::istream& operator >> (std::istream& istrm, Complex& rhs);
+inline std::ostream& operator<<(std::ostream& ostrm, const Complex& rhs) {
+    return rhs.writeTo(ostrm);
+}
+
+inline std::istream& operator>>(std::istream& istrm, Complex& rhs) {
+    return rhs.readFrom(istrm);
+}
 
 #endif //COMPLEX_COMPLEX_H
