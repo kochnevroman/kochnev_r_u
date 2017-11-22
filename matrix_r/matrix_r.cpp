@@ -9,7 +9,8 @@ Matrix_R::Matrix_R(const ptrdiff_t &nRow, const ptrdiff_t &nCol)
         nCol_ = nCol;
 
         pdata_ = new double *[nRow_];
-        for (ptrdiff_t i = 0; i < nRow_; i++) {
+        for (ptrdiff_t i = 0; i < nRow_; i++)
+        {
             pdata_[i] = new double[nCol_];
         }
     }
