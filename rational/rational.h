@@ -4,8 +4,7 @@
 
 #include <iosfwd>
 
-class Rational
-{
+class Rational {
 public:
     Rational() {}
     explicit Rational(const int num);  //Конструктор для целого числа
@@ -40,13 +39,12 @@ Rational operator-(const Rational& lhs, const Rational& rhs);
 Rational operator*(const Rational& lhs, const Rational& rhs);
 Rational operator/(const Rational& lhs, const Rational& rhs);
 
-inline std::ostream& operator<<(std::ostream& ostrm, const Rational& rhs)
-{
+
+inline std::ostream& operator<<(std::ostream& ostrm, const Rational& rhs) {
     return rhs.writeTo(ostrm);
 }
 
-inline std::istream& operator >> (std::istream& istrm, Rational& rhs)
-{
+inline std::istream& operator >> (std::istream& istrm, Rational& rhs) {
     return rhs.readFrom(istrm);
 }
 
