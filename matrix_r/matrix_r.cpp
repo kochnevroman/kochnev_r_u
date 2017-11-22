@@ -41,6 +41,11 @@ Matrix_R::Matrix_R(const Matrix_R &matrix_r)
 
 Matrix_R::~Matrix_R()
 {
+    for (int i = 0; i < nRow_; i++)
+    {
+        delete[] pdata_[i];
+        pdata_[i] = nullptr;
+    }
     nRow_ = 0;
     nCol_ = 0;
     delete[] pdata_;
@@ -149,6 +154,11 @@ Matrix_R Matrix_R::operator*=(const Matrix_R &matrix_r)
             }
         }
 
+        for (int i = 0; i < nRow_; i++)
+        {
+            delete[] pdata_[i];
+            pdata_[i] = nullptr;
+        }
         delete[] pdata_;
         pdata_ = nullptr;
         pdata_ = newMatrix;
