@@ -41,9 +41,8 @@ int main()
     multiMatrixWithNumber *= number;
     cout << "Произведение matrix_r1 *= number = 0,5: " << "\n" << multiMatrixWithNumber << endl;
 
-    matrix_r1.removeRowFirst();
-
-    cout << "Удаление первой строки из matrix_r1: " << "\n" << matrix_r1 << endl;
+    //matrix_r1.removeRowFirst();
+    //cout << "Удаление первой строки из matrix_r1: " << "\n" << matrix_r1 << endl;
 
     cout << "matrix_r1 + matrix_r2: " << "\n" << matrix_r1 + matrix_r2 << endl;
 

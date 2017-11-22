@@ -128,7 +128,14 @@ Matrix_R Matrix_R::operator-=(const Matrix_R &matrix_r) {
 
 Matrix_R Matrix_R::operator*=(const Matrix_R &matrix_r)
 {
-    if (nRow_ == matrix_r.nCol_ && nCol_ == matrix_r.nRow_)
+    double** newMatrix = new double*[nRow_];
+
+    for (ptrdiff_t i = 0; i < nRow_; i++)
+    {
+        newMatrix[i] = new double[nCol_];
+    }
+
+    if (nRow_ == matrix_r.nCol_)
     {
         for (ptrdiff_t i = 0; i < nRow_; i++)
         {
@@ -136,10 +143,15 @@ Matrix_R Matrix_R::operator*=(const Matrix_R &matrix_r)
             {
                 for (ptrdiff_t inner = 0; inner < 3; inner++)
                 {
-                    pdata_[i][j] += pdata_[i][inner] * matrix_r.pdata_[inner][j];
+                    newMatrix[i][j] += pdata_[i][inner] * matrix_r.pdata_[inner][j];
                 }
             }
         }
+
+        delete[] pdata_;
+        pdata_ = nullptr;
+        pdata_ = newMatrix;
+
         return *this;
     }
     else {
@@ -170,6 +182,7 @@ const ptrdiff_t& Matrix_R::getColCount() const
     return nCol_;
 }
 
+/*
 void Matrix_R::determinant() {
 
 }
@@ -210,9 +223,9 @@ void Matrix_R::removeRowFirst()
 {
     double **newMatrix = new double *[nRow_ - 1];
 
-    for (ptrdiff_t i = 0; i < nRow_ - 1; i++)
+    for (ptrdiff_t i = 0; i < nRow_ -1; i++)
     {
-        newMatrix[i] = new double[nCol_];
+        newMatrix[i] = new double[nCol_ - 1];
     }
 
     for (ptrdiff_t i = 0; i < nRow_ - 1; i++)
@@ -222,8 +235,13 @@ void Matrix_R::removeRowFirst()
             newMatrix[i][j] = pdata_[i + 1][j];
         }
 
+        for (int i = 0; i < nRow_; i++)
+        {
+            delete[] pdata_[i];
+            pdata_[i] = nullptr;
+        }
         delete[] pdata_;
-        pdata_ = newMatrix;
+        pdata_ = nullptr;
     }
 }
 
@@ -329,6 +347,7 @@ void Matrix_R::reshuffleTwoCols(const ptrdiff_t &firstCol, const ptrdiff_t &seco
         throw("Неправильный номер столбца");
 
 }
+*/
 
 Matrix_R operator+(const Matrix_R& firstMatrix, const Matrix_R& secondMatrix)
 {

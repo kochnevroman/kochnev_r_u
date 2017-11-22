@@ -32,6 +32,7 @@ public:
     const ptrdiff_t& getRowCount() const;
     const ptrdiff_t& getColCount() const;
 
+    /*
     void determinant();
     void transpose();
     void resize(const ptrdiff_t& newNumberOfLines, const ptrdiff_t& newNumberOfColumns);
@@ -66,6 +67,7 @@ public:
 
     //перестановка двух столбцов
     void reshuffleTwoCols(const ptrdiff_t& firstCol, const ptrdiff_t& secondCol);
+     */
 
     std::ostream& writeTo(std::ostream& ostrm ) const;
 
