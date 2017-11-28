@@ -1,7 +1,6 @@
 #include "rational.h"
 #include <iostream>
 #include <sstream>
-#include <exception>
 
 using  namespace std;
 
@@ -31,8 +30,8 @@ int main()
     try {
         Rational testRational(3, 0);
     }
-    catch (const std::exception message) {
-        cout << "The denominator can not be zero" << endl << endl;
+    catch (invalid_argument &e) {
+        cout << e.what() << endl << endl;
     }
 
     rational += Rational(1, 4);

@@ -1,6 +1,5 @@
 #include "rational.h"
 #include <iostream>
-#include <exception>
 
 Rational::Rational(const int num)
         : num_(num)
@@ -12,7 +11,7 @@ Rational::Rational(const int num, const int denom)
         , denom_(denom)
 {
     if (denom == 0) {
-        throw std::exception();
+        throw std::invalid_argument("The determinator can not be zero");
     }
 }
 
