@@ -15,20 +15,20 @@ Rational::Rational(const int num, const int denom)
     }
 }
 
-bool Rational::operator==(const Rational& rhs)
+bool Rational::operator==(const Rational& rational)
 {
-    return(num_ * rhs.denom_ == rhs.num_ * denom_);
+    return(num_ * rational.denom_ == rational.num_ * denom_);
 }
 
-bool Rational::operator!=(const Rational &rhs)
+bool Rational::operator!=(const Rational &rational)
 {
-    return !operator==(rhs);
+    return !operator==(rational);
 }
 
-Rational& Rational::operator+=(const Rational& rhs)
+Rational& Rational::operator+=(const Rational& rational)
 {
-    num_ = num_*rhs.denom_ + rhs.num_*denom_;
-    denom_ = denom_*rhs.denom_;
+    num_ = num_*rational.denom_ + rational.num_*denom_;
+    denom_ = denom_*rational.denom_;
 
     if (isUnitFraction()) {
         num_ = 1, denom_ = 1;
@@ -36,9 +36,9 @@ Rational& Rational::operator+=(const Rational& rhs)
     return *this;
 }
 
-Rational& Rational::operator-=(const Rational& rhs) {
-    num_ = num_*rhs.denom_ - rhs.num_*denom_;
-    denom_ = denom_*rhs.denom_;
+Rational& Rational::operator-=(const Rational& rational) {
+    num_ = num_*rational.denom_ - rational.num_*denom_;
+    denom_ = denom_*rational.denom_;
 
     if (isUnitFraction()) {
         num_ = 1, denom_ = 1;
@@ -46,9 +46,9 @@ Rational& Rational::operator-=(const Rational& rhs) {
     return *this;
 }
 
-Rational& Rational::operator*=(const Rational& rhs) {
-    num_ = rhs.num_*num_;
-    denom_ = rhs.denom_*denom_;
+Rational& Rational::operator*=(const Rational& rational) {
+    num_ = rational.num_*num_;
+    denom_ = rational.denom_*denom_;
 
     if (isUnitFraction()) {
         num_ = 1, denom_ = 1;
@@ -57,9 +57,9 @@ Rational& Rational::operator*=(const Rational& rhs) {
 }
 
 
-Rational& Rational::operator/=(const Rational& rhs) {
-    num_ = num_*rhs.denom_;
-    denom_ = rhs.num_*denom_;
+Rational& Rational::operator/=(const Rational& rational) {
+    num_ = num_*rational.denom_;
+    denom_ = rational.num_*denom_;
 
     if (isUnitFraction()) {
         num_ = 1, denom_ = 1;
@@ -75,31 +75,31 @@ bool Rational::isUnitFraction()
     return false;
 }
 
-Rational operator+(const Rational& lhs, const Rational& rhs)
+Rational operator+(const Rational& firstRational, const Rational& secondRational)
 {
-    Rational rational(lhs);
-    rational += rhs;
+    Rational rational(firstRational);
+    rational += secondRational;
     return rational;
 }
 
-Rational operator-(const Rational& lhs, const Rational& rhs)
+Rational operator-(const Rational& firstRational, const Rational& secondRational)
 {
-    Rational rational(lhs);
-    rational -= rhs;
+    Rational rational(firstRational);
+    rational -= secondRational;
     return rational;
 }
 
-Rational operator*(const Rational& lhs, const Rational& rhs)
+Rational operator*(const Rational& firstRational, const Rational& secondRational)
 {
-    Rational rational(lhs);
-    rational *= rhs;
+    Rational rational(firstRational);
+    rational *= secondRational;
     return rational;
 }
 
-Rational operator/(const Rational& lhs, const Rational& rhs)
+Rational operator/(const Rational& firstRational, const Rational& secondRational)
 {
-    Rational rational(lhs);
-    rational /= rhs;
+    Rational rational(firstRational);
+    rational /= secondRational;
     return rational;
 }
 
@@ -114,12 +114,12 @@ std::istream& Rational::readFrom(std::istream& istrm)
 {
     char leftBrace(0);
     int num(0);
-    char s(0);
+    char separator(0);
     int denom(0);
     char rightBrace(0);
-    istrm >> leftBrace >> num_ >> s >> denom_ >> rightBrace;
+    istrm >> leftBrace >> num_ >> separator >> denom_ >> rightBrace;
     if (istrm.good()) {
-        if ((Rational::leftBrace == leftBrace) && (Rational::separator == s)
+        if ((Rational::leftBrace == leftBrace) && (Rational::separator == separator)
             && (Rational::rightBrace == rightBrace)) {
             num_ = num;
             denom_ = denom;

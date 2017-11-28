@@ -11,14 +11,14 @@ public:
     explicit Rational(const int num);;
     Rational( int num,  int denom);
 
-    bool operator==(const Rational& rhs);
-    bool operator!=(const Rational& rhs);
+    bool operator==(const Rational& rational);
+    bool operator!=(const Rational& rational);
 
     // Перегрузка основных операторов.
-    Rational& operator+=(const Rational& rhs);
-    Rational& operator-=(const Rational& rhs);
-    Rational& operator*=(const Rational& rhs);
-    Rational& operator/=(const Rational& rhs);
+    Rational& operator+=(const Rational& rational);
+    Rational& operator-=(const Rational& rational);
+    Rational& operator*=(const Rational& rational);
+    Rational& operator/=(const Rational& rational);
 
     // Проверка равенства числителя и знаменателя для вывода.
     bool isUnitFraction();
@@ -27,28 +27,28 @@ public:
     std::istream& readFrom(std::istream& istrm);
 
 private:
-    int num_  { 0 }; // Числитель.
-    int denom_{ 1 }; // Знаменатель.
+    int num_  { 0 };
+    int denom_{ 1 };
 
     static const char leftBrace{ '{' };
     static const char separator{ '/' };
     static const char rightBrace{ '}' };
 };
 
-Rational operator+(const Rational& lhs, const Rational& rhs);
-Rational operator-(const Rational& lhs, const Rational& rhs);
-Rational operator*(const Rational& lhs, const Rational& rhs);
-Rational operator/(const Rational& lhs, const Rational& rhs);
+Rational operator+(const Rational& firstRational, const Rational& secondRational);
+Rational operator-(const Rational& firstRational, const Rational& secondRational);
+Rational operator*(const Rational& firstRational, const Rational& secondRational);
+Rational operator/(const Rational& firstRational, const Rational& secondRational);
 
 
-inline std::ostream& operator<<(std::ostream& ostrm, const Rational& rhs)
+inline std::ostream& operator<<(std::ostream& ostrm, const Rational& rational)
 {
-    return rhs.writeTo(ostrm);
+    return rational.writeTo(ostrm);
 }
 
-inline std::istream& operator >> (std::istream& istrm, Rational& rhs)
+inline std::istream& operator >> (std::istream& istrm, Rational& rational)
 {
-    return rhs.readFrom(istrm);
+    return rational.readFrom(istrm);
 }
 
 #endif //RATIONAL_RATIONAL_H
