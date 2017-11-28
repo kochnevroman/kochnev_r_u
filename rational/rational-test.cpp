@@ -30,7 +30,7 @@ int main()
     try {
         Rational testRational(3, 0);
     }
-    catch (invalid_argument &e) {
+    catch (invalid_argument& e) {
         cout << e.what() << endl << endl;
     }
 
