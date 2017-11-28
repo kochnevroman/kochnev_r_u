@@ -2,118 +2,125 @@
 #include <cmath>
 #include <iostream>
 
-Vector3d::Vector3d(const double x, const double y, const double z) //конструктор
+Vector3d::Vector3d(const double x, const double y, const double z)
+        : x_(x)
+        , y_(y)
+        , z_(z)
 {
-    x_ = x;
-    y_ = y;
-    z_ = z;
 }
 
-Vector3d::Vector3d(const Vector3d& vector3d) //конструктор копирования
+Vector3d::Vector3d(const Vector3d& vector3d)
+        : x_(vector3d.x_)
+        , y_(vector3d.y_)
+        , z_(vector3d.z_)
+{
+}
+
+Vector3d Vector3d::operator=(const Vector3d& vector3d)
 {
     x_ = vector3d.x_;
     y_ = vector3d.y_;
     z_ = vector3d.z_;
-}
-
-Vector3d Vector3d::operator=(const Vector3d &vector3d)
-{
-    x_ = vector3d.x_;
-    y_ = vector3d.y_;
-    z_ = vector3d.z_;
-
     return *this;
 }
 
-bool Vector3d::operator==(const Vector3d& rhs)
+bool Vector3d::operator==(const Vector3d& vector3d)
 {
-    double eps0 = 0.00001;
-    return((abs(rhs.x_ - x_) < eps0) && (abs(rhs.y_ - y_) < eps0) && (abs(rhs.z_ - z_) < eps0));
+    double eps0 = 0.000001;
+    return((abs(vector3d.x_ - x_) < eps0) && (abs(vector3d.y_ - y_) < eps0) && (abs(vector3d.z_ - z_) < eps0));
 }
 
-bool Vector3d::operator!=(const Vector3d &rhs)
+bool Vector3d::operator!=(const Vector3d &vector3d)
 {
-    return !operator==(rhs);
+    return !operator==(vector3d);
 }
 
-Vector3d& Vector3d::operator+=(const Vector3d& rhs) //прибавление к текущему вектору вектор
+Vector3d& Vector3d::operator+=(const Vector3d& vector3d)
 {
-    x_ = rhs.x_ + x_;
-    y_ = rhs.y_ + y_;
-    z_ = rhs.z_ + z_;
-    return *this;
-}
-Vector3d& Vector3d::operator-=(const Vector3d& rhs) //вычитание из текущего вектора вектор
-{
-    x_ = x_ - rhs.x_;
-    y_ = y_ - rhs.y_;
-    z_ = z_ - rhs.z_;
+    x_ = vector3d.x_ + x_;
+    y_ = vector3d.y_ + y_;
+    z_ = vector3d.z_ + z_;
     return *this;
 }
 
-Vector3d& Vector3d::operator*=(const double& rhs) //умножение вектора на число
+Vector3d& Vector3d::operator-=(const Vector3d& vector3d)
 {
-    x_ = x_ * rhs;
-    y_ = y_ * rhs;
-    z_ = z_ * rhs;
+    x_ = x_ - vector3d.x_;
+    y_ = y_ - vector3d.y_;
+    z_ = z_ - vector3d.z_;
     return *this;
 }
 
-Vector3d& Vector3d::operator/=(const double& rhs) //деление вектора на число
+Vector3d& Vector3d::operator*=(const double number)
 {
-    x_ = x_ / rhs;
-    y_ = y_ / rhs;
-    z_ = z_ / rhs;
+    x_ = x_ * number;
+    y_ = y_ * number;
+    z_ = z_ * number;
     return *this;
 }
 
-Vector3d operator+(const Vector3d& lhs, const Vector3d& rhs) //сложение двух векторов
+Vector3d& Vector3d::operator/=(const double number)
 {
-    return Vector3d(lhs.x_ + rhs.x_, lhs.y_ + rhs.y_, lhs.z_ + rhs.z_);
+    x_ = x_ / number;
+    y_ = y_ / number;
+    z_ = z_ / number;
+    return *this;
 }
 
-Vector3d operator-(const Vector3d& lhs, const Vector3d& rhs) //вычитание двух векторов
+double Vector3d::scalarProduct(const Vector3d &vector3d)
 {
-    return Vector3d(lhs.x_ - rhs.x_, lhs.y_ - rhs.y_, lhs.z_ - rhs.z_);
+    return (x_ * vector3d.x_, y_ * vector3d.y_, z_ * vector3d.z_);
 }
 
-Vector3d operator*(const Vector3d& lhs, const double number) //произведение вектора и числа
+double Vector3d::length()
 {
-    Vector3d vector3d (lhs);
-    return (vector3d *= number);
+    return sqrt(pow(x_, 2) + pow(y_, 2) + pow(z_, 2));
 }
 
-Vector3d operator*(const double number, const Vector3d& lhs) //произведение вектора и числа
+double Vector3d::cosineOfAngle(const Vector3d &vector3d)
 {
-    Vector3d vector3d (lhs);
-    return (vector3d *= number);
-}
-
-Vector3d operator/(const Vector3d& lhs, const double number) //отношение вектора и числа
-{
-    Vector3d vector3d (lhs);
-    return (vector3d /= number);
-}
-
-double scalarProduct(const Vector3d& lhs, const Vector3d& rhs) //скалярное произведение двух векторов
-{
-    return (lhs.x_ * rhs.x_, lhs.y_ * rhs.y_, lhs.z_ * rhs.z_);
-}
-
-double length (const Vector3d& rhs) //длина вектора
-{
-    return sqrt(pow(rhs.x_, 2) + pow(rhs.y_, 2) + pow(rhs.z_, 2));
-}
-
-double cosineOfAngle (const Vector3d& firstVector3d, const Vector3d& secondVector3d)
-{
-    double firstLength = length(firstVector3d);
-    double secondLength = length(secondVector3d);
+    double firstLength = length();
+    double secondLength = sqrt(pow(vector3d.x_, 2) + pow(vector3d.y_, 2) + pow(vector3d.z_, 2));
 
     if (firstLength != 0 && secondLength != 0) {
-        return scalarProduct(firstVector3d, secondVector3d) / (firstLength * secondLength);
+        return scalarProduct(vector3d) / (firstLength * secondLength);
     }
     return 1;
+}
+
+Vector3d operator+(const Vector3d& firstVector3d, const Vector3d& secondVector3d)
+{
+    Vector3d vector3d(firstVector3d);
+    vector3d += secondVector3d;
+    return vector3d;
+}
+
+Vector3d operator-(const Vector3d& firstVector3d, const Vector3d& secondVector3d)
+{
+    Vector3d vector3d(firstVector3d);
+    vector3d -= secondVector3d;
+    return vector3d;
+}
+
+Vector3d operator*(const Vector3d& vector3d, const double number)
+{
+    Vector3d vector3d_(vector3d);
+    vector3d_ *= number;
+    return vector3d_;
+}
+
+Vector3d operator*(const double number, const Vector3d& vector3d)
+{
+    Vector3d vector3d_(vector3d);
+    vector3d_ *= number;
+    return vector3d_;
+}
+
+Vector3d operator/(const Vector3d& vector3d, const double number)
+{
+    Vector3d vector3d_(vector3d);
+    vector3d_ /= number;
+    return vector3d_;
 }
 
 
@@ -133,17 +140,13 @@ std::istream& Vector3d::readFrom(std::istream& istrm)
     int z(0);
     char rightBrace(0);
     istrm >> leftBrace >> x_ >> separator >> space >> y_ >> separator >> space >> z_ >> rightBrace;
-    if (istrm.good())
-    {
+    if (istrm.good()) {
         if ((Vector3d::leftBrace == leftBrace) && (Vector3d::separator == separator)
-            && (Vector3d::rightBrace == rightBrace))
-        {
+            && (Vector3d::rightBrace == rightBrace)) {
             x_ = x;
             y_ = y;
             z_ = z;
-        }
-        else
-        {
+        } else {
             istrm.setstate(std::ios_base::failbit);
         }
     }

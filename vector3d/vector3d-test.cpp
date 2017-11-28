@@ -1,6 +1,7 @@
 #include "vector3d.h"
 #include <iostream>
 #include <sstream>
+#include <cmath>
 
 using namespace std;
 
@@ -9,12 +10,9 @@ bool testParse(const std::string& str)
     istringstream istrm(str);
     Vector3d vector3d;
     istrm >> vector3d;
-    if (istrm.good())
-    {
+    if (istrm.good()) {
         cout << "Read success: " << str << " -> " << vector3d << endl;
-    }
-    else
-    {
+    } else {
         cout << "Read error: " << str << " -> " << vector3d << endl;
     }
     return istrm.good();
@@ -60,14 +58,20 @@ int main()
 
     cout << "Отношение вектора (5, 7.5, 25) и числа 2.5 = " << vec_c / number << endl;
 
-    double vec_a_b(scalarProduct(vec_a, vec_b));
-    cout << "Скалярное произведение vec_a(3, 4, 5) на vec_b(1, 2, 6) = " << vec_a_b  << endl;
+    double vec_a_b(vec_a.scalarProduct(vec_b));
+    cout << "Скалярное произведение vec_a(3, 4, 5) на vec_b(1, 2, 6) = " << vec_a_b << endl;
 
-    double resultOfLength = length(vec_a);
-    cout << "Длина вектора vec_a(3, 4, 5) = " << resultOfLength  << endl << endl;
+    double resultOfLength( vec_a.length() );
+    cout << "Длина вектора vec_a(3, 4, 5) = " << resultOfLength << endl << endl;
 
-    double resultOfCosineAngle = cosineOfAngle(vec_a, vec_b);
-    cout << "Косинус между вектором vec_a(3, 4, 5) и vec_b(1, 2, 6) = cos(" << resultOfCosineAngle <<')' << endl;
-    double resultOfCosineAnglewithZeroLength = cosineOfAngle(vec_c, vec_d);
-    cout << "Косинус между вектором vec_c(5, 7.5, 25) и vec_d(0, 0, 0) = cos(" << resultOfCosineAnglewithZeroLength <<')' << endl << endl;
+    double resultOfCosineAngle( vec_a.cosineOfAngle(vec_b) );
+    cout << "Косинус между вектором vec_a(3, 4, 5) и vec_b(1, 2, 6) = cos(" << resultOfCosineAngle << ')' << endl;
+    cout << "Угол между вектором vec_a(3, 4, 5) и vec_b(1, 2, 6) = " << acos(resultOfCosineAngle) << " градусов" << endl
+         << endl;
+
+    double resultOfCosineAnglewithZeroLength( vec_c.cosineOfAngle(vec_d) );
+    cout << "Косинус между вектором vec_c(5, 7.5, 25) и vec_d(0, 0, 0) = cos(" << resultOfCosineAnglewithZeroLength
+         << ')' << endl;
+    cout << "Угол между вектором vec_c(5, 7.5, 25) и vec_d(0, 0, 0) = " << acos(resultOfCosineAnglewithZeroLength)
+         << " градусов" << endl;
 }
