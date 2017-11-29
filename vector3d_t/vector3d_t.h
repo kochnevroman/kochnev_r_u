@@ -17,7 +17,7 @@ public:
 
     ~Vector3d_T() = default;
 
-    Vector3d_T<T> operator=(const Vector3d_T& vector3d_t);
+    Vector3d_T<T>& operator=(const Vector3d_T& vector3d_t);
 
     bool operator==(const Vector3d_T& vector3d_t);
     bool operator!=(const Vector3d_T& vector3d_t);
@@ -26,6 +26,8 @@ public:
     Vector3d_T<T>& operator-=(const Vector3d_T<T>& vector3d_t);
     Vector3d_T<T>& operator*=(const T number);
     Vector3d_T<T>& operator/=(const T number);
+
+    bool compareTo(const Vector3d_T<T>& vector3d_t);
 
     // Скалярное произведение двух векторов.
     double scalarProduct(const Vector3d_T<T>& vector3d_t);
@@ -78,13 +80,51 @@ Vector3d_T<T>::Vector3d_T(const Vector3d_T<T>& vector3d_t)
 }
 
 template <typename T>
-Vector3d_T<T> Vector3d_T<T>::operator=(const Vector3d_T<T>& vector3d_t)
+Vector3d_T<T>& Vector3d_T<T>::operator=(const Vector3d_T<T>& vector3d_t)
 {
     x_ = vector3d_t.x_;
     y_ = vector3d_t.y_;
     z_ = vector3d_t.z_;
     return *this;
 }
+
+/*
+template <typename T>
+bool Vector3d_T<T>::compareTo(const Vector3d_T<T>& vector3d_t)
+{
+    if ((x_ == vector3d_t.x_) && (y_ == vector3d_t.y_) && (z_ == vector3d_t.z_)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool Vector3d_T<double>::compareTo(const Vector3d_T<double>& vector3d_t)
+{
+    const double eps0 = 1e-12;
+    if ((x_ - vector3d_t.x_) < eps0 && (y_ - vector3d_t.y_) < eps0 && (z_ - vector3d_t.z_) < eps0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool Vector3d_T<float>::compareTo(const Vector3d_T<float>& vector3d_t)
+{
+    const float eps0 = 1e-12;
+    if ((x_ - vector3d_t.x_) < eps0 && (y_ - vector3d_t.y_) < eps0 && (z_ - vector3d_t.z_) < eps0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+template <typename T>
+bool Vector3d_T<T>::operator==(const Vector3d_T<T>& vector3d_t)
+{
+    return compareTo(vector3d_t);
+}
+*/
 
 template <typename T>
 bool Vector3d_T<T>::operator==(const Vector3d_T<T>& vector3d_t)
