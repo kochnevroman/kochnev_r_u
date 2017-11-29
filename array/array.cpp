@@ -89,6 +89,7 @@ void Array::resize(const ptrdiff_t newArraySize)
         delete[] pdata_;
         pdata_ = newArray;
         size_ = newArraySize;
+
     } else {
         int *newArray = new int[newArraySize];
 
@@ -144,8 +145,7 @@ void Array::insertLast(const int newElement)
 {
     int* newArray = new int[size_ + 1];
 
-    for (ptrdiff_t i(0); i < size_; i += 1)
-    {
+    for (ptrdiff_t i(0); i < size_; i += 1) {
         newArray[i] = pdata_[i];
     }
 
@@ -172,6 +172,7 @@ void Array::removeAtIndex(const ptrdiff_t removableElementIndex)
         size_ -= 1;
         delete[] pdata_;
         pdata_ = newArray;
+
     } else {
         throw std::invalid_argument("Index is out of range");
     }
@@ -189,6 +190,7 @@ void Array::removeFirst()
         size_ -= 1;
         delete[] pdata_;
         pdata_ = newArray;
+
     } else {
         throw std::invalid_argument("Can not remove an element from an empty array");
     }
@@ -206,6 +208,7 @@ void Array::removeLast()
         size_ -= 1;
         delete[] pdata_;
         pdata_ = newArray;
+
     } else {
         throw std::invalid_argument("Can not remove an element from an empty array");
     }
@@ -218,12 +221,14 @@ void Array::sort(choiceOfSort choice)
             for (ptrdiff_t i = 0; i < size_ - 1; i += 1) {
                 int elementMin = pdata_[i];
                 ptrdiff_t indexMin = i;
+
                 for (ptrdiff_t j = i + 1; j < size_; j += 1) {
                     if (pdata_[j] < elementMin) {
                         elementMin = pdata_[j];
                         indexMin = j;
                     }
                 }
+
                 pdata_[indexMin] = pdata_[i];
                 pdata_[i] = elementMin;
             }
@@ -233,12 +238,14 @@ void Array::sort(choiceOfSort choice)
             for (ptrdiff_t i = 0; i < size_ - 1; i += 1) {
                 int elementMax = pdata_[i];
                 ptrdiff_t indexMax = i;
+
                 for (ptrdiff_t j = i + 1; j < size_; j += 1) {
                     if (pdata_[j] > elementMax) {
                         elementMax = pdata_[j];
                         indexMax = j;
                     }
                 }
+
                 pdata_[indexMax] = pdata_[i];
                 pdata_[i] = elementMax;
             }
@@ -261,6 +268,7 @@ void Array::reshuffleOfElements(const ptrdiff_t firstIndex, const ptrdiff_t seco
 
         delete[] pdata_;
         pdata_ = newArray;
+
     } else {
         throw std::invalid_argument("One or two indexes are out of range");
     }
