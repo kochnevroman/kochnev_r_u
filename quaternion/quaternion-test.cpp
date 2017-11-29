@@ -9,12 +9,9 @@ bool testParse(const std::string& str)
     istringstream istrm(str);
     Quaternion quaternion;
     istrm >> quaternion;
-    if (istrm.good())
-    {
+    if (istrm.good()) {
         cout << "Read success: " << str << " -> " << quaternion << endl;
-    }
-    else
-    {
+    } else {
         cout << "Read error: " << str << " -> " << quaternion << endl;
     }
     return istrm.good();
@@ -56,7 +53,7 @@ int main()
 
     cout << "Модуль кватерниона (3, 4, 7, 12) = " << quaternion1.module() << endl;
 
-    cout << "Определитель матричного представления кватерниона (3, 4, 7, 12) = " << quaternion1.det() << endl << endl;
+    cout << "Определитель матричного представления кватерниона (3, 4, 7, 12) = " << quaternion1.determinant() << endl << endl;
 
     return  0;
 }

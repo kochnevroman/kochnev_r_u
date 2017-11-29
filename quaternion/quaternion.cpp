@@ -1,28 +1,30 @@
 #include "quaternion.h"
-#include <cmath>
 #include <iostream>
+#include <cmath>
 
 Quaternion::Quaternion(const double a, const double b, const double c, const double d)
-        : a_(a), b_(b), c_(c), d_(d)
+        : a_(a)
+        , b_(b)
+        , c_(c)
+        , d_(d)
 {
 }
 
 Quaternion::Quaternion(const Quaternion &quaternion)
-        : a_(quaternion.a_),
-          b_(quaternion.b_),
-          c_(quaternion.c_),
-          d_(quaternion.d_)
+        : a_(quaternion.a_)
+        , b_(quaternion.b_)
+        , c_(quaternion.c_)
+        , d_(quaternion.d_)
 {
 }
 
-Quaternion Quaternion::operator=(const Quaternion &quaternion)
+Quaternion& Quaternion::operator=(const Quaternion &quaternion)
 {
     a_ = quaternion.a_;
     b_ = quaternion.b_;
     c_ = quaternion.d_;
     d_ = quaternion.d_;
-
-    return  *this;
+    return *this;
 }
 
 bool Quaternion::operator==(const Quaternion &quaternion)
@@ -43,7 +45,6 @@ Quaternion& Quaternion::operator+=(const Quaternion &quaternion)
     b_ += quaternion.b_;
     c_ += quaternion.c_;
     d_ += quaternion.d_;
-
     return *this;
 }
 
@@ -63,7 +64,6 @@ Quaternion& Quaternion::operator*=(const Quaternion &quaternion)
     b_ = a_ * quaternion.b_ + b_ * quaternion.a_ + c_ * quaternion.d_ - d_ * quaternion.c_;
     c_ = a_ * quaternion.c_ - b_ * quaternion.d_ + c_ * quaternion.a_ + d_ * quaternion.b_;
     d_ = a_ * quaternion.d_ + b_ * quaternion.c_ + c_ * quaternion.b_ + d_ * quaternion.a_;
-
     return *this;
 }
 
@@ -73,7 +73,6 @@ Quaternion& Quaternion::operator*=(const double number)
     b_ += number;
     c_ += number;
     d_ += number;
-
     return *this;
 }
 
@@ -83,7 +82,6 @@ Quaternion& Quaternion::operator/=(const double number)
     b_ /= number;
     c_ /= number;
     d_ /= number;
-
     return *this;
 }
 
@@ -98,17 +96,16 @@ double Quaternion::module()
 
 }
 
-double Quaternion::det()
+double Quaternion::determinant()
 {
     return  pow(sqrt(pow(a_, 2) +  pow(b_, 2) + pow (c_, 2) + pow(d_, 2)), 4);
 }
 
 Quaternion operator+(const Quaternion& firstQuaternion, const Quaternion& secondQuaternion)
 {
-    return Quaternion(firstQuaternion.a_ + secondQuaternion.a_,
-                      firstQuaternion.b_ + secondQuaternion.b_,
-                      firstQuaternion.c_ + secondQuaternion.c_,
-                      firstQuaternion.d_ + secondQuaternion.d_);
+    Quaternion quaternion(firstQuaternion);
+    quaternion += secondQuaternion;
+    return quaternion;
 }
 
 Quaternion operator-(const Quaternion& firstQuaternion, const Quaternion& secondQuaternion)
@@ -138,7 +135,8 @@ Quaternion operator*(const double number, const Quaternion& quaternion)
 
 std::ostream& Quaternion::writeTo(std::ostream& ostrm) const
 {
-    ostrm << leftBrace << a_ << separator << space << b_ << separator << space  << c_ << separator << space << d_ << rightBrace;
+    ostrm << leftBrace << a_ << separator << space << b_ << separator << space << c_ << separator << space << d_
+          << rightBrace;
     return ostrm;
 }
 
@@ -152,19 +150,16 @@ std::istream& Quaternion::readFrom(std::istream& istrm)
     double b(0.0);
     double c(0.0);
     double d(0.0);
-    istrm >> leftBrace >> a_ >> separator >> space >> b_ >> separator >> space >> c_ >> separator >> space >> d_ >> rightBrace;
-    if (istrm.good())
-    {
+    istrm >> leftBrace >> a_ >> separator >> space >> b_ >> separator >> space >> c_ >> separator >> space >> d_
+          >> rightBrace;
+    if (istrm.good()) {
         if ((Quaternion::leftBrace == leftBrace) && (Quaternion::separator == separator)
-            && (Quaternion::rightBrace == rightBrace))
-        {
+            && (Quaternion::rightBrace == rightBrace)) {
             a_ = a;
             b_ = b;
             c_ = c;
             d_ = d;
-        }
-        else
-        {
+        } else {
             istrm.setstate(std::ios_base::failbit);
         }
     }
