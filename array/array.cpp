@@ -3,7 +3,7 @@
 #include <stdexcept>
 
 Array::Array()
-        :pdata_( new int[size_ + 1])
+        : pdata_(new int[size_ + 1])
 {
 
 }
