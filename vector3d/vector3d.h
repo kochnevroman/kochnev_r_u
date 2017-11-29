@@ -13,7 +13,7 @@ public:
 
     ~Vector3d() = default;
 
-    Vector3d operator=(const Vector3d& vector3d);
+    Vector3d& operator=(const Vector3d& vector3d);
 
     bool operator==(const Vector3d& vector3d);
     bool operator!=(const Vector3d& vector3d);

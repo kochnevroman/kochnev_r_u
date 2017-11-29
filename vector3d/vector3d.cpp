@@ -16,7 +16,7 @@ Vector3d::Vector3d(const Vector3d& vector3d)
 {
 }
 
-Vector3d Vector3d::operator=(const Vector3d& vector3d)
+Vector3d& Vector3d::operator=(const Vector3d& vector3d)
 {
     x_ = vector3d.x_;
     y_ = vector3d.y_;
