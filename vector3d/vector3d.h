@@ -4,7 +4,7 @@
 
 #include <iosfwd>
 
-struct Vector3d
+class Vector3d
 {
 public:
     Vector3d() = default;

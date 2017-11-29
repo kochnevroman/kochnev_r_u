@@ -74,4 +74,6 @@ int main()
          << ')' << endl;
     cout << "Угол между вектором vec_c(5, 7.5, 25) и vec_d(0, 0, 0) = " << acos(resultOfCosineAnglewithZeroLength)
          << " градусов" << endl;
+
+    return  0;
 }
