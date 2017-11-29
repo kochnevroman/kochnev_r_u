@@ -10,7 +10,7 @@ Quaternion::Quaternion(const double a, const double b, const double c, const dou
 {
 }
 
-Quaternion::Quaternion(const Quaternion &quaternion)
+Quaternion::Quaternion(const Quaternion& quaternion)
         : a_(quaternion.a_)
         , b_(quaternion.b_)
         , c_(quaternion.c_)
@@ -18,7 +18,7 @@ Quaternion::Quaternion(const Quaternion &quaternion)
 {
 }
 
-Quaternion& Quaternion::operator=(const Quaternion &quaternion)
+Quaternion& Quaternion::operator=(const Quaternion& quaternion)
 {
     a_ = quaternion.a_;
     b_ = quaternion.b_;
@@ -27,19 +27,19 @@ Quaternion& Quaternion::operator=(const Quaternion &quaternion)
     return *this;
 }
 
-bool Quaternion::operator==(const Quaternion &quaternion)
+bool Quaternion::operator==(const Quaternion& quaternion)
 {
     double eps0 = 0.00001;
     return((abs(quaternion.a_ - a_) < eps0) && (abs(quaternion.b_ - b_) < eps0)
            && (abs(quaternion.c_ - c_) < eps0) && (abs(quaternion.d_ - d_) < eps0));
 }
 
-bool Quaternion::operator!=(const Quaternion &quaternion)
+bool Quaternion::operator!=(const Quaternion& quaternion)
 {
     return !operator==(quaternion);
 }
 
-Quaternion& Quaternion::operator+=(const Quaternion &quaternion)
+Quaternion& Quaternion::operator+=(const Quaternion& quaternion)
 {
     a_ += quaternion.a_;
     b_ += quaternion.b_;
@@ -48,7 +48,7 @@ Quaternion& Quaternion::operator+=(const Quaternion &quaternion)
     return *this;
 }
 
-Quaternion& Quaternion::operator-=(const Quaternion &quaternion)
+Quaternion& Quaternion::operator-=(const Quaternion& quaternion)
 {
     a_ -= quaternion.a_;
     b_ -= quaternion.b_;
@@ -58,7 +58,7 @@ Quaternion& Quaternion::operator-=(const Quaternion &quaternion)
     return *this;
 }
 
-Quaternion& Quaternion::operator*=(const Quaternion &quaternion)
+Quaternion& Quaternion::operator*=(const Quaternion& quaternion)
 {
     a_ = a_ * quaternion.a_ - b_ * quaternion.b_ - c_ * quaternion.c_ - d_ * quaternion.d_;
     b_ = a_ * quaternion.b_ + b_ * quaternion.a_ + c_ * quaternion.d_ - d_ * quaternion.c_;
