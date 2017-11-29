@@ -13,6 +13,13 @@ Complex::Complex(const double real, const double imaginary)
 {
 }
 
+Complex& operator=(const Complex& complex)
+{
+    re = complex.re;
+    im = complex.im;
+    return *this;
+}
+
 bool Complex::operator==(const Complex &rhs) const
 {
     double eps0 = 0.0000001;
