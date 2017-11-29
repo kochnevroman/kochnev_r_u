@@ -15,6 +15,13 @@ Rational::Rational(const int num, const int denom)
     }
 }
 
+Rational& Rational::operator=(const Rational &rational)
+{
+    num_ = rational.num_;
+    denom_ = rational.denom_;
+    return *this;
+}
+
 bool Rational::operator==(const Rational& rational)
 {
     return(num_ * rational.denom_ == rational.num_ * denom_);

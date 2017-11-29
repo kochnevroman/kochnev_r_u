@@ -9,7 +9,10 @@ class Rational
 public:
     Rational() = default;
     explicit Rational(const int num);;
-    Rational( int num,  int denom);
+    Rational(const int num, const int denom);
+    Rational(const Rational& rational) = default;
+
+    Rational& operator=(const Rational& rational);
 
     bool operator==(const Rational& rational);
     bool operator!=(const Rational& rational);

@@ -27,6 +27,7 @@ int main()
     cout << endl << "Исходное рациональное число: " << rational << endl << endl;
 
     cout << "Попытка задать знаменателю значение 0: " << endl;
+    cout << "rational (3, 0): " << endl;
     try {
         Rational testRational(3, 0);
     }
