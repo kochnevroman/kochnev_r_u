@@ -92,13 +92,13 @@ Quaternion Quaternion::conjugating()
 
 double Quaternion::module()
 {
-    return sqrt(pow(a_, 2) +  pow(b_, 2) + pow (c_, 2) + pow(d_, 2));
+    return sqrt( pow(a_, 2) +  pow(b_, 2) + pow (c_, 2) + pow(d_, 2) );
 
 }
 
 double Quaternion::determinant()
 {
-    return  pow(sqrt(pow(a_, 2) +  pow(b_, 2) + pow (c_, 2) + pow(d_, 2)), 4);
+    return  pow( sqrt(pow(a_, 2) +  pow(b_, 2) + pow (c_, 2) + pow(d_, 2)), 4 );
 }
 
 Quaternion operator+(const Quaternion& firstQuaternion, const Quaternion& secondQuaternion)
