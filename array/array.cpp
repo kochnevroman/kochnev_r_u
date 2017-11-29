@@ -266,7 +266,7 @@ void Array::reshuffleOfElements(const ptrdiff_t firstIndex, const ptrdiff_t seco
     }
 }
 
-bool Array::isEmpty()
+bool Array::isEmpty() const
 {
     return pdata_ == nullptr;
 }

@@ -52,7 +52,7 @@ public:
     void reshuffleOfElements(const ptrdiff_t firstIndex, const ptrdiff_t secondIndex);
 
     // Проверка на пустоту.
-    bool isEmpty();
+    bool isEmpty() const;
 
     std::ostream& writeTo(std::ostream& ostrm);
 
