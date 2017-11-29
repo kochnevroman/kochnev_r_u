@@ -13,65 +13,61 @@ enum choiceOfSort
 class Array
 {
 public:
-    Array() = default; //дефолтный конструктор
-    Array(const ptrdiff_t & size); //конструктор
-    Array(const Array& array); //конструктор копирования
+    Array();
+    Array(const ptrdiff_t size);
+    explicit Array(const Array& array);
 
-    ~Array(); //деструктор
+    ~Array();
 
-    Array& operator=(const Array& array); //оператор присваивания
+    Array& operator=(const Array& array);
 
-    //доступ по индексу
+    // Доступ по индексу.
     int& operator[](const ptrdiff_t index);
     const int& operator[](const ptrdiff_t index) const;
 
-    //получение размера массива
-    ptrdiff_t& count() const;
+    // Получение размера массива.
+    ptrdiff_t count();
 
-    //новый размер массива
-    void resize(const ptrdiff_t& newArraySize);
+    // Новый размер массива.
+    void resize(const ptrdiff_t newArraySize);
 
-    //добавление в любое место массива
-    void addToIndex(const ptrdiff_t& newIndex, const int& newElement);
-    //добавление в начало массива
-    void addFirst(const int& newElement);
-    //добавление в конец массива
-    void addLast(const int& newElement);
+    // Добавление в любое место массива.
+    void insertToIndex(const int newElement, const ptrdiff_t newIndex);
+    // Добавление в начало массива.
+    void insertFirst(const int newElement);
+    // Добавление в конец массива.
+    void insertLast(const int newElement);
 
-    //удаление элемента массива по индексу
-    void removeAtIndex(const ptrdiff_t& removableElementIndex);
-    //удаление первого элемента массива
+    // Удаление элемента массива по индексу.
+    void removeAtIndex(const ptrdiff_t removableElementIndex);
+    // Удаление первого элемента массива.
     void removeFirst();
-    //удаление последнего элемента массива
+    // Удаление последнего элемента массива.
     void removeLast();
 
-    //сортировка массива по возрастанию (по умолчанию)
-    void sort();
+    // Сортировка массива c выбором - по возрастанию (по умолчанию) или по убыванию.
+    void sort(choiceOfSort choice = UP);
 
-    //сортировка массива c выбором - по возрастанию или по убыванию
-    void sort(choiceOfSort choice);
+    // Перестановка двух элементов массива.
+    void reshuffleOfElements(const ptrdiff_t firstIndex, const ptrdiff_t secondIndex);
 
-    //перестановка двух элементов массива
-    void reshuffleOfElements(const ptrdiff_t& firstIndex, const ptrdiff_t& secondIndex);
-
-    //Проверка на пустоту
+    // Проверка на пустоту.
     bool isEmpty();
 
     std::ostream& writeTo(std::ostream& ostrm);
 
 private:
     ptrdiff_t size_{ 0 };
-    int* pdata{ nullptr };
+    int* pdata_{ nullptr };
 
     static const char leftBrace{ '[' };
     static const char separator{ ',' };
     static const char rightBrace{ ']' };
 };
 
-inline std::ostream& operator << (std::ostream& ostrm, Array& b)
+inline std::ostream& operator<<(std::ostream& ostrm, Array& array)
 {
-    return b.writeTo(ostrm);
+    return array.writeTo(ostrm);
 }
-
 
 #endif //ARRAY_ARRAY_H
