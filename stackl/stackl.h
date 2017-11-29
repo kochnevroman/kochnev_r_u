@@ -8,26 +8,38 @@ class StackL
 {
 public:
     StackL() = default;
-    StackL(const StackL& rhs);
-    ]
+    StackL(const StackL& stackL);
+
     ~StackL();
 
-    StackL& operator=(const StackL& rhs);
+    StackL& operator=(const StackL& stackL);
 
-    void push(const int& v);
+    void push(const int& value);
+
     void pop();
+
     int& top();
+
     const int& top() const;
+
     bool isEmpty() const;
+
+    std::ostream& writeTo(std::ostream& ostrm);
 
 private:
     struct Node
     {
+        Node(Node* pNext, const int& value);
         Node* pNext_{ nullptr };
         int data_{ int(0) };
     };
 
     Node* pHead_{ nullptr };
 };
+
+inline std::ostream& operator<<(std::ostream& ostrm, StackL& stackL)
+{
+    return stackL.writeTo(ostrm);
+}
 
 #endif //STACKL_STACK_H
