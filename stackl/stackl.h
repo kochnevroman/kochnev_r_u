@@ -21,7 +21,7 @@ public:
     int& top();
 
     const int& top() const;
-    
+
     bool isEmpty() const;
 
     std::ostream& writeTo(std::ostream& ostrm);
