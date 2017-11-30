@@ -8,7 +8,7 @@ class StackL
 {
 public:
     StackL() = default;
-    StackL(const StackL& stackL);
+    explicit StackL(const StackL& stackL);
 
     ~StackL();
 
