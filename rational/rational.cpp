@@ -110,6 +110,15 @@ Rational operator/(const Rational& firstRational, const Rational& secondRational
     return rational;
 }
 
+inline std::ostream& operator<<(std::ostream& ostrm, const Rational& rational)
+{
+    return rational.writeTo(ostrm);
+}
+
+inline std::istream& operator>>(std::istream& istrm, Rational& rational)
+{
+    return rational.readFrom(istrm);
+}
 
 std::ostream& Rational::writeTo(std::ostream& ostrm) const
 {

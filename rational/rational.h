@@ -43,15 +43,7 @@ Rational operator-(const Rational& firstRational, const Rational& secondRational
 Rational operator*(const Rational& firstRational, const Rational& secondRational);
 Rational operator/(const Rational& firstRational, const Rational& secondRational);
 
-
-inline std::ostream& operator<<(std::ostream& ostrm, const Rational& rational)
-{
-    return rational.writeTo(ostrm);
-}
-
-inline std::istream& operator >> (std::istream& istrm, Rational& rational)
-{
-    return rational.readFrom(istrm);
-}
+inline std::ostream& operator<<(std::ostream& ostrm, const Rational& rational);
+inline std::istream& operator>>(std::istream& istrm, Rational& rational);
 
 #endif //RATIONAL_RATIONAL_H
