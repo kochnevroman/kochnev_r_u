@@ -85,6 +85,11 @@ bool StackL::isEmpty() const
     return pHead_ == nullptr;
 }
 
+inline std::ostream& operator<<(std::ostream& ostrm, StackL& stackL)
+{
+    return stackL.writeTo(ostrm);
+}
+
 std::ostream& StackL::writeTo(std::ostream& ostrm)
 {
     StackL stackL(*this);
