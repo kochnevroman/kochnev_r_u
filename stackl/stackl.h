@@ -22,6 +22,7 @@ public:
 
     const int& top() const;
 
+    fasfasfasfwqrqwlknfjnkfnkanfklkl
     bool isEmpty() const;
 
     std::ostream& writeTo(std::ostream& ostrm);
