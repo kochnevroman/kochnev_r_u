@@ -59,14 +59,7 @@ Complex operator/(const double number, const Complex& rhs);
 Complex operator/(const Complex& lhs, const double number);
 
 
-inline std::ostream& operator<<(std::ostream& ostrm, const Complex& rhs)
-{
-    return rhs.writeTo(ostrm);
-}
-
-inline std::istream& operator>>(std::istream& istrm, Complex& rhs)
-{
-    return rhs.readFrom(istrm);
-}
+inline std::ostream& operator<<(std::ostream& ostrm, const Complex& rhs);
+inline std::istream& operator>>(std::istream& istrm, Complex& rhs);
 
 #endif //COMPLEX_COMPLEX_H
