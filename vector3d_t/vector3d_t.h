@@ -48,20 +48,7 @@ private:
     static const char separator{ ',' };
     static const char space { ' ' };
     static const char rightBrace{ '}' };
-
 };
-
-template <typename T>
-inline std::ostream& operator << (std::ostream& ostrm, const Vector3d_T<T>& vector3d_t)
-{
-    return vector3d_t.writeTo(ostrm);
-}
-
-template <typename T>
-inline std::istream& operator >> (std::istream& istrm, Vector3d_T<T>& vector3d_t)
-{
-    return vector3d_t.readFrom(istrm);
-}
 
 template <typename T>
 Vector3d_T<T>::Vector3d_T(const T x, const T y, const T z)
@@ -237,6 +224,18 @@ Vector3d_T<T> operator/(const Vector3d_T<T>& vector3d_t, const T number)
     Vector3d_T<T> vector3d_t_(vector3d_t);
     vector3d_t_ /= number;
     return vector3d_t_;
+}
+
+template <typename T>
+inline std::ostream& operator<<(std::ostream& ostrm, const Vector3d_T<T>& vector3d_t)
+{
+    return vector3d_t.writeTo(ostrm);
+}
+
+template <typename T>
+inline std::istream& operator>>(std::istream& istrm, Vector3d_T<T>& vector3d_t)
+{
+    return vector3d_t.readFrom(istrm);
 }
 
 template <typename T>
