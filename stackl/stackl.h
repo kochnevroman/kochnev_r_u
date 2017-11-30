@@ -19,7 +19,6 @@ public:
     void pop();
 
     int& top();
-
     const int& top() const;
 
     bool isEmpty() const;
