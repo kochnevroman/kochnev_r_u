@@ -52,15 +52,7 @@ Vector3d operator*(const double number, const Vector3d& vector3d);
 
 Vector3d operator/(const Vector3d& vector3d, const double number);
 
-
-inline std::ostream& operator << (std::ostream& ostrm, const Vector3d& vector3d)
-{
-    return vector3d.writeTo(ostrm);
-}
-
-inline std::istream& operator >> (std::istream& istrm, Vector3d& vector3d)
-{
-    return vector3d.readFrom(istrm);
-}
+inline std::ostream& operator<<(std::ostream& ostrm, const Vector3d& vector3d);
+inline std::istream& operator>>(std::istream& istrm, Vector3d& vector3d);
 
 #endif //VECTOR3D_VECTOR3D_H

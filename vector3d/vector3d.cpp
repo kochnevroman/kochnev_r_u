@@ -123,6 +123,15 @@ Vector3d operator/(const Vector3d& vector3d, const double number)
     return vector3d_;
 }
 
+inline std::ostream& operator<<(std::ostream& ostrm, const Vector3d& vector3d)
+{
+    return vector3d.writeTo(ostrm);
+}
+
+inline std::istream& operator>>(std::istream& istrm, Vector3d& vector3d)
+{
+    return vector3d.readFrom(istrm);
+}
 
 std::ostream& Vector3d::writeTo(std::ostream& ostrm) const
 {
