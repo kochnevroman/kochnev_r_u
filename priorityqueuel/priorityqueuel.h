@@ -37,9 +37,6 @@ private:
     Node* pTail_{ nullptr };
 };
 
-inline std::ostream& operator<<(std::ostream& ostrm, PriorityQueueL& priorityQueueL)
-{
-    return  priorityQueueL.writeTo(ostrm);
-}
+inline std::ostream& operator<<(std::ostream& ostrm, PriorityQueueL& priorityQueueL);
 
 #endif //PRIORITYQUEUEL_PRIORITYQUEUEL_H

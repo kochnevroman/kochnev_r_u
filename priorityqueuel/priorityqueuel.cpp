@@ -43,6 +43,11 @@ bool PriorityQueueL::isEmpty() const
     return  pTail_ == nullptr;
 }
 
+inline std::ostream& operator<<(std::ostream& ostrm, PriorityQueueL& priorityQueueL)
+{
+    return  priorityQueueL.writeTo(ostrm);
+}
+
 std::ostream& PriorityQueueL::writeTo(std::ostream &ostrm)
 {
 
