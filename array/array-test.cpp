@@ -21,6 +21,9 @@ int main()
     array[1] = 10;
     array[2] = 12;
 
+    const Array constArray(array);
+    cout << "Доступ к элементу с индексом 2 константного массива, constArray[2]: " << constArray[2] << endl << endl;
+
     cout << "Попытка доступа к элменту массива с индексом -25: " << endl;
     cout << "array[-25] = 100: " << endl;
     try {
