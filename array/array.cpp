@@ -279,6 +279,10 @@ bool Array::isEmpty() const
     return pData_ == nullptr;
 }
 
+inline std::ostream& operator<<(std::ostream& ostrm, Array& array)
+{
+    return array.writeTo(ostrm);
+}
 
 std::ostream& Array::writeTo(std::ostream& ostrm)
 {

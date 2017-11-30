@@ -65,9 +65,6 @@ private:
     static const char rightBrace{ ']' };
 };
 
-inline std::ostream& operator<<(std::ostream& ostrm, Array& array)
-{
-    return array.writeTo(ostrm);
-}
+inline std::ostream& operator<<(std::ostream& ostrm, Array& array);
 
 #endif //ARRAY_ARRAY_H
