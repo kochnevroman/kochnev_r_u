@@ -27,9 +27,6 @@ private:
 // some some sad or not, let it know...
 };
 
-inline std::ostream& operator<<(std::ostream& ostrm, StackR& stackR)
-{
-    return stackR.writeTo(ostrm);
-}
+inline std::ostream& operator<<(std::ostream& ostrm, StackR& stackR);
 
 #endif //STACKR_STACKR_H

@@ -36,6 +36,11 @@ bool StackR::isEmpty() const
     return 0;
 }
 
+inline std::ostream& operator<<(std::ostream& ostrm, StackR& stackR)
+{
+    return stackR.writeTo(ostrm);
+}
+
 std::ostream& StackR::writeTo(std::ostream &ostrm)
 {
 
