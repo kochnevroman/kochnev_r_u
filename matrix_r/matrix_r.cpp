@@ -1,11 +1,11 @@
 #include "matrix_r.h"
 #include <iostream>
 
-Matrix_R::Matrix_R(const ptrdiff_t &nRow, const ptrdiff_t &nCol)
+Matrix_R::Matrix_R(const ptrdiff_t& nRow, const ptrdiff_t& nCol)
+        : nRow_(nRow)
+        , nCol_(nCol)
 {
-    if (nRow > 0 && nCol > 0) {
-        nRow_ = nRow;
-        nCol_ = nCol;
+    if (nRow_ > 0 && nCol_ > 0) {
 
         pData_ = new double *[nRow_];
         for (ptrdiff_t iRow(0); iRow < nRow_; iRow += 1) {
@@ -20,9 +20,9 @@ Matrix_R::Matrix_R(const ptrdiff_t &nRow, const ptrdiff_t &nCol)
 }
 
 Matrix_R::Matrix_R(const Matrix_R& matrix_r)
+        : nRow_(matrix_r.nRow_)
+        , nCol_(matrix_r.nCol_)
 {
-    nCol_ = matrix_r.nCol_;
-    nRow_ = matrix_r.nRow_;
     pData_ = new double* [nRow_];
 
     for (ptrdiff_t iRow(0); iRow < nRow_; iRow += 1) {
