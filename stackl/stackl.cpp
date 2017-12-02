@@ -20,12 +20,13 @@ StackL::StackL(const StackL& stackL)
 
 StackL::~StackL()
 {
-    while (!isEmpty()) {
+    while ( !isEmpty() ) {
         pop();
     }
+    pHead_ = nullptr;
 }
 
-StackL::Node::Node(Node *pNext, const int& value)
+StackL::Node::Node(Node* pNext, const int& value)
         : pNext_(pNext)
         , data_(value)
 {
@@ -55,26 +56,28 @@ void StackL::push(const int& value)
 
 void StackL::pop()
 {
-    if (!isEmpty()) {
+    if ( !isEmpty() ) {
         Node* pDelete(pHead_);
         pHead_ = pDelete -> pNext_;
         delete pDelete;
     } else {
-        throw std::invalid_argument("Can not do top() no more");
+        throw std::invalid_argument("Can not do pop() no more");
     }
 }
 
 int& StackL::top()
 {
-    if (!isEmpty()) {
+    if ( !isEmpty() ) {
         return  pHead_ -> data_;
+    } else {
+        throw std::invalid_argument("Can not do top() no more");
     }
 }
 
 const int& StackL::top() const
 {
-    if (!isEmpty()) {
-        return pHead_->data_;
+    if ( !isEmpty() ) {
+        return pHead_ -> data_;
     } else {
         throw std::invalid_argument("Can not do top() no more");
     }
