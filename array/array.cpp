@@ -1,6 +1,5 @@
 #include "array.h"
 #include <iostream>
-#include <stdexcept>
 
 Array::Array()
         : pData_(new int[size_ + 1])
@@ -18,7 +17,7 @@ Array::Array(const ptrdiff_t size)
     }
 }
 
-Array::Array(const Array & array)
+Array::Array(const Array& array)
         : size_(array.size_)
         , pData_(new int[array.size_])
 {
@@ -57,7 +56,7 @@ ptrdiff_t Array::count() const
     return size_;
 }
 
-Array& Array::operator=(const Array & array)
+Array& Array::operator=(const Array& array)
 {
     if (pData_ == array.pData_ && array.size_ == size_) {
         return *this;
@@ -279,7 +278,7 @@ bool Array::isEmpty() const
     return pData_ == nullptr;
 }
 
-inline std::ostream& operator<<(std::ostream& ostrm, Array& array)
+std::ostream& operator<<(std::ostream& ostrm, Array& array)
 {
     return array.writeTo(ostrm);
 }
