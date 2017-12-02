@@ -28,7 +28,7 @@ public:
 private:
     struct Node
     {
-        Node(Node * pNext, const int& value);
+        Node(Node* pNext, const int& value);
         Node* pNext_{ nullptr };
         int data_{ int(0) };
     };
@@ -37,6 +37,6 @@ private:
     Node* pTail_{ nullptr };
 };
 
-inline std::ostream& operator<<(std::ostream& ostrm, PriorityQueueL& priorityQueueL);
+std::ostream& operator<<(std::ostream& ostrm, PriorityQueueL& priorityQueueL);
 
 #endif //PRIORITYQUEUEL_PRIORITYQUEUEL_H
