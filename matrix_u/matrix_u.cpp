@@ -3,20 +3,25 @@
 
 Matrix_U::Matrix_U(const ptrdiff_t& nRow, const ptrdiff_t& nCol)
 {
+    if (nRow > 0 && nCol > 0) {
+
     nRow_ = nRow;
     nCol_ = nCol;
-    pdata_ = new double[nRow_* nCol_];
+    pData_ = new double[nRow_* nCol_];
+
+    } else {
+        throw std::invalid_argument("The number of rows or columns can not be less than zero");
+    }
 }
 
 Matrix_U::Matrix_U(const Matrix_U &matrix_u)
 {
     nRow_ = matrix_u.nRow_;
     nCol_ = matrix_u.nCol_;
-    pdata_ = new double[nRow_ * nCol_];
+    pData_ = new double[nRow_ * nCol_];
 
-    for (ptrdiff_t i = 0; i < nRow_ * nCol_; i++)
-    {
-        pdata_[i] = matrix_u.pdata_[i];
+    for (ptrdiff_t i(0); i < nRow_ * nCol_; i += 1) {
+        pData_[i] = matrix_u.pData_[i];
     }
 }
 
@@ -24,139 +29,113 @@ Matrix_U::~Matrix_U()
 {
     nRow_ = 0;
     nCol_ = 0;
-    delete[] pdata_;
-    pdata_ = nullptr;
+    delete[] pData_;
+    pData_ = nullptr;
 }
 
 double& Matrix_U::at(const ptrdiff_t iRow, const ptrdiff_t iCol)
 {
-    if (iRow >= 0 && iCol >= 0 && iRow < nRow_ && iCol < nCol_)
-    {
-        return pdata_[nCol_ * iRow + iCol];
+    if (iRow >= 0 && iCol >= 0 && iRow < nRow_ && iCol < nCol_) {
+        return pData_[nCol_ * iRow + iCol];
+    } else {
+        throw std::invalid_argument("Invalid element index");
     }
-    else
-        throw("Неправильный индекс элемента");
 }
 
 const double& Matrix_U::at(const ptrdiff_t iRow, const ptrdiff_t iCol) const
 {
-    if (iRow >= 0 && iCol >= 0 && iRow < nRow_ && iCol < nCol_)
-    {
-        return pdata_[nCol_ * iRow + iCol];
+    if (iRow >= 0 && iCol >= 0 && iRow < nRow_ && iCol < nCol_) {
+        return pData_[nCol_ * iRow + iCol];
+    } else {
+        throw std::invalid_argument("Invalid element index");
     }
-    else
-        throw("Неправильный индекс элемента");
 }
 
-//операции матрицы с матрицей
 Matrix_U Matrix_U::operator=(const Matrix_U &matrix_u)
 {
-    for (ptrdiff_t i = 0; i < nRow_ * nCol_; i++)
-    {
-        pdata_[i] = matrix_u.pdata_[i];
+    for (ptrdiff_t i(0); i < nRow_ * nCol_; i += 1) {
+        pData_[i] = matrix_u.pData_[i];
     }
-
     return *this;
 }
 
 Matrix_U Matrix_U::operator+=(const Matrix_U &matrix_u)
 {
-    if (nRow_ == matrix_u.nRow_ && nCol_ == matrix_u.nCol_)
-    {
-        for (ptrdiff_t i = 0; i < nRow_ * nCol_; i++)
-        {
-            pdata_[i] += matrix_u.pdata_[i];
+    if (nRow_ == matrix_u.nRow_ && nCol_ == matrix_u.nCol_) {
+
+        for (ptrdiff_t i(0); i < nRow_ * nCol_; i += 1) {
+
+            pData_[i] += matrix_u.pData_[i];
         }
         return *this;
-    }
 
-    else {
-        throw ("Матрицы разного размера");
+    } else {
+        throw std::invalid_argument("Matrices of different sizes");
     }
 }
 
 Matrix_U Matrix_U::operator-=(const Matrix_U &matrix_u)
 {
-    if (nRow_ == matrix_u.nRow_ && nCol_ == matrix_u.nCol_)
-    {
-        for (ptrdiff_t i = 0; i < nRow_ * nCol_; i++)
-        {
-            pdata_[i] -= matrix_u.pdata_[i];
+    if (nRow_ == matrix_u.nRow_ && nCol_ == matrix_u.nCol_) {
+
+        for (ptrdiff_t i(0); i < nRow_ * nCol_; i += 1) {
+
+            pData_[i] -= matrix_u.pData_[i];
         }
         return *this;
-    }
 
-    else {
-        throw ("Матрицы разного размера");
+    } else {
+        throw std::invalid_argument("Matrices of different sizes");
     }
 }
 
-
+// Something always goes wrong.
 Matrix_U Matrix_U::operator*=(const Matrix_U &matrix_u)
 {
-   // /*
     double* newMatrix = new double[nRow_*nCol_];
 
-    if (nRow_ == matrix_u.nCol_)
-    {
-        for (ptrdiff_t i = 0; i < nRow_; i++)
-        {
-            for (ptrdiff_t j = 0; j < nCol_; j++)
-            {
-                for (ptrdiff_t inner = 0; inner < 3; inner++)
-                {
-                    newMatrix[inner] += pdata_[inner] * matrix_u.pdata_[inner];
+    if (nRow_ == matrix_u.nCol_) {
+
+        for (ptrdiff_t iRow(0); iRow < nRow_ * nCol_; iRow += 1) {
+
+            for (ptrdiff_t jCol(0); jCol < nCol_; jCol += 1) {
+
+                for (ptrdiff_t inner(0); inner < nRow_; inner += 1) {
+
+                    newMatrix[inner] += pData_[inner] * matrix_u.pData_[inner];
                 }
             }
         }
 
-        delete[] pdata_;
-        pdata_ = nullptr;
-        pdata_ = newMatrix;
+        delete[] pData_;
+        pData_ = nullptr;
+        pData_ = newMatrix;
 
         return *this;
+
+    } else {
+        throw std::invalid_argument("Matrices can not be multiplied");
     }
-    else {
-        throw ("Матрицы невозможно перемножить");
-    }
-     //*/
 }
 
-//операции матрицы с числом
 Matrix_U Matrix_U::operator*=(const double &number)
 {
-    for (ptrdiff_t i = 0; i < nRow_ * nCol_; i++)
-    {
-        pdata_[i] *= number;
+    for (ptrdiff_t i(0); i < nRow_ * nCol_; i += 1) {
+        pData_[i] *= number;
     }
     return *this;
 }
 
-const ptrdiff_t& Matrix_U::getRowCount() const
+ptrdiff_t Matrix_U::getRowCount() const
 {
     return nRow_;
 }
 
-const ptrdiff_t& Matrix_U::getColCount() const
+ptrdiff_t Matrix_U::getColCount() const
 {
     return nCol_;
 }
 
-/*
-void Matrix_U::determinant() {
-
-}
-
-void Matrix_U::transpose() {
-
-}
-
-void Matrix_U::resize(const ptrdiff_t &newNumberOfLines, const ptrdiff_t & newNumberOfColumns) {
-
-}
-*/
-
-//операции матрицы с матрицей
 Matrix_U operator+(const Matrix_U& matrix1, const Matrix_U& matrix2)
 {
     Matrix_U matrix_u(matrix1);
@@ -175,10 +154,6 @@ Matrix_U operator*(const Matrix_U& matrix1, const Matrix_U& matrix2)
     return matrix_u *= matrix2;
 }
 
-//операции матрицы с вектором
-//
-
-//операции матрицы с числом
 Matrix_U operator*(const Matrix_U& matrix_u, const double& number)
 {
     Matrix_U matrix(matrix_u);
@@ -191,14 +166,18 @@ Matrix_U operator*(const double& number, const Matrix_U& matrix_u)
     return matrix *=number;
 }
 
+std::ostream& operator<<(std::ostream& ostrm, const Matrix_U& matrix_u)
+{
+    return  matrix_u.writeTo(ostrm);
+}
 
 std::ostream& Matrix_U::writeTo(std::ostream& ostrm) const
 {
-    for (ptrdiff_t j = 0; j < nRow_ * nCol_; j += nCol_)
-    {
-        for (ptrdiff_t i = j; i < j + nCol_; i++)
-        {
-            ostrm << pdata_[i] << ' ';
+    for (ptrdiff_t iRow(0); iRow < nRow_ * nCol_; iRow += nCol_) {
+
+        for (ptrdiff_t jCol = iRow; jCol < iRow + nCol_; jCol += 1) {
+
+            ostrm << pData_[jCol] << ' ';
         }
         ostrm << "\n";
     }
