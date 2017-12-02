@@ -36,6 +36,6 @@ private:
     Node* pHead_{ nullptr };
 };
 
-inline std::ostream& operator<<(std::ostream& ostrm, StackL& stackL);
+std::ostream& operator<<(std::ostream& ostrm, StackL& stackL);
 
 #endif //STACKL_STACK_H
