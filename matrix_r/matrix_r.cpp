@@ -19,7 +19,7 @@ Matrix_R::Matrix_R(const ptrdiff_t &nRow, const ptrdiff_t &nCol)
 
 }
 
-Matrix_R::Matrix_R(const Matrix_R &matrix_r)
+Matrix_R::Matrix_R(const Matrix_R& matrix_r)
 {
     nCol_ = matrix_r.nCol_;
     nRow_ = matrix_r.nRow_;
@@ -70,7 +70,7 @@ const double& Matrix_R::at(const ptrdiff_t iRow, const ptrdiff_t iCol) const
     }
 }
 
-Matrix_R& Matrix_R::operator=(const Matrix_R &matrix_r)
+Matrix_R& Matrix_R::operator=(const Matrix_R& matrix_r)
 {
     nCol_ = matrix_r.nCol_;
     nRow_ = matrix_r.nRow_;
@@ -107,7 +107,7 @@ Matrix_R& Matrix_R::operator+=(const Matrix_R& matrix_r)
     }
 }
 
-Matrix_R& Matrix_R::operator-=(const Matrix_R &matrix_r)
+Matrix_R& Matrix_R::operator-=(const Matrix_R& matrix_r)
 {
     if (nRow_ == matrix_r.nRow_ || nCol_ == matrix_r.nCol_) {
 
@@ -125,7 +125,7 @@ Matrix_R& Matrix_R::operator-=(const Matrix_R &matrix_r)
     }
 }
 
-Matrix_R& Matrix_R::operator*=(const Matrix_R &matrix_r)
+Matrix_R& Matrix_R::operator*=(const Matrix_R& matrix_r)
 {
     double** newMatrix = new double*[nRow_];
 
@@ -139,7 +139,7 @@ Matrix_R& Matrix_R::operator*=(const Matrix_R &matrix_r)
 
             for (ptrdiff_t iCol(0); iCol < nCol_; iCol += 1) {
 
-                for (ptrdiff_t inner = 0; inner < nRow_; inner++) {
+                for (ptrdiff_t inner(0); inner < nRow_; inner += 1) {
 
                     newMatrix[iRow][iCol] += pData_[iRow][inner] * matrix_r.pData_[inner][iCol];
                 }
@@ -162,7 +162,7 @@ Matrix_R& Matrix_R::operator*=(const Matrix_R &matrix_r)
     }
 }
 
-Matrix_R& Matrix_R::operator*=(const double &number)
+Matrix_R& Matrix_R::operator*=(const double number)
 {
     for (ptrdiff_t iRow(0); iRow < nRow_; iRow += 1) {
 
