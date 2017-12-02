@@ -13,20 +13,20 @@ Complex::Complex(const double real, const double imaginary)
 {
 }
 
-Complex& operator=(const Complex& complex)
+Complex& Complex::operator=(const Complex& complex)
 {
     re = complex.re;
     im = complex.im;
     return *this;
 }
 
-bool Complex::operator==(const Complex &rhs) const
+bool Complex::operator==(const Complex& rhs) const
 {
     double eps0 = 0.0000001;
     return (abs(re - rhs.re) < eps0 ) && (abs(im - rhs.im) < eps0);
 }
 
-bool Complex::operator!=(const Complex &rhs) const
+bool Complex::operator!=(const Complex& rhs) const
 {
     return !operator==(rhs);
 }
@@ -178,12 +178,12 @@ Complex operator/(const Complex& lhs, const double number)
     return complex;
 }
 
-inline std::ostream& operator<<(std::ostream& ostrm, const Complex& rhs)
+std::ostream& operator<<(std::ostream& ostrm, const Complex& rhs)
 {
     return rhs.writeTo(ostrm);
 }
 
-inline std::istream& operator>>(std::istream& istrm, Complex& rhs)
+std::istream& operator>>(std::istream& istrm, Complex& rhs)
 {
     return rhs.readFrom(istrm);
 }
