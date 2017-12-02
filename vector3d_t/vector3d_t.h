@@ -121,7 +121,7 @@ bool Vector3d_T<T>::operator==(const Vector3d_T<T>& vector3d_t)
 }
 
 template <typename T>
-bool Vector3d_T<T>::operator!=(const Vector3d_T<T> &vector3d_t)
+bool Vector3d_T<T>::operator!=(const Vector3d_T<T>& vector3d_t)
 {
     return !operator==(vector3d_t);
 }
@@ -163,7 +163,7 @@ Vector3d_T<T>& Vector3d_T<T>::operator/=(const T number)
 }
 
 template <typename T>
-double Vector3d_T<T>::scalarProduct(const Vector3d_T<T> &vector3d_t)
+double Vector3d_T<T>::scalarProduct(const Vector3d_T<T>& vector3d_t)
 {
     return (x_ * vector3d_t.x_, y_ * vector3d_t.y_, z_ * vector3d_t.z_);
 }
@@ -175,7 +175,7 @@ double Vector3d_T<T>::length()
 }
 
 template <typename T>
-double Vector3d_T<T>::cosineOfAngle(const Vector3d_T<T> &vector3d_t)
+double Vector3d_T<T>::cosineOfAngle(const Vector3d_T<T>& vector3d_t)
 {
     double firstLength = length();
     double secondLength = sqrt(pow(vector3d_t.x_, 2) + pow(vector3d_t.y_, 2) + pow(vector3d_t.z_, 2));
