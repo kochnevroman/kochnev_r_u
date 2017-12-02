@@ -175,7 +175,7 @@ std::ostream& Matrix_U::writeTo(std::ostream& ostrm) const
 {
     for (ptrdiff_t iRow(0); iRow < nRow_ * nCol_; iRow += nCol_) {
 
-        for (ptrdiff_t jCol = iRow; jCol < iRow + nCol_; jCol += 1) {
+        for (ptrdiff_t jCol(iRow); jCol < iRow + nCol_; jCol += 1) {
 
             ostrm << pData_[jCol] << ' ';
         }
