@@ -132,12 +132,12 @@ Quaternion operator*(const double number, const Quaternion& quaternion)
     return (quaternion_ *= number);
 }
 
-inline std::ostream& operator<<(std::ostream& ostrm, const Quaternion& quaternion)
+std::ostream& operator<<(std::ostream& ostrm, const Quaternion& quaternion)
 {
     return quaternion.writeTo(ostrm);
 }
 
-inline std::istream& operator>>(std::istream& istrm, Quaternion& quaternion)
+std::istream& operator>>(std::istream& istrm, Quaternion& quaternion)
 {
     return quaternion.readFrom(istrm);
 }
