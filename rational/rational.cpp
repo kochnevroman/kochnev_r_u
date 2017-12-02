@@ -15,7 +15,7 @@ Rational::Rational(const int num, const int denom)
     }
 }
 
-Rational& Rational::operator=(const Rational &rational)
+Rational& Rational::operator=(const Rational& rational)
 {
     num_ = rational.num_;
     denom_ = rational.denom_;
@@ -27,7 +27,7 @@ bool Rational::operator==(const Rational& rational)
     return(num_ * rational.denom_ == rational.num_ * denom_);
 }
 
-bool Rational::operator!=(const Rational &rational)
+bool Rational::operator!=(const Rational& rational)
 {
     return !operator==(rational);
 }
@@ -110,12 +110,12 @@ Rational operator/(const Rational& firstRational, const Rational& secondRational
     return rational;
 }
 
-inline std::ostream& operator<<(std::ostream& ostrm, const Rational& rational)
+std::ostream& operator<<(std::ostream& ostrm, const Rational& rational)
 {
     return rational.writeTo(ostrm);
 }
 
-inline std::istream& operator>>(std::istream& istrm, Rational& rational)
+std::istream& operator>>(std::istream& istrm, Rational& rational)
 {
     return rational.readFrom(istrm);
 }
