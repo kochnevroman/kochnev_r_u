@@ -18,13 +18,13 @@ public:
     const double& at(const ptrdiff_t iRow, const ptrdiff_t iCol) const;
 
     // Операции матрицы с матрицей.
-    Matrix_U operator=(const Matrix_U& matrix_u);
-    Matrix_U operator+=(const Matrix_U& matrix_u);
-    Matrix_U operator-=(const Matrix_U& matrix_u);
-    Matrix_U operator*=(const Matrix_U& matrix_u);
+    Matrix_U& operator=(const Matrix_U& matrix_u);
+    Matrix_U& operator+=(const Matrix_U& matrix_u);
+    Matrix_U& operator-=(const Matrix_U& matrix_u);
+    Matrix_U& operator*=(const Matrix_U& matrix_u);
 
     // Операции матрицы с числом.
-    Matrix_U operator*=(const double& number);
+    Matrix_U& operator*=(const double number);
 
     ptrdiff_t getRowCount() const;
     ptrdiff_t getColCount() const;
@@ -43,8 +43,8 @@ Matrix_U operator-(const Matrix_U& matrix1, const Matrix_U& matrix2);
 Matrix_U operator*(const Matrix_U& matrix1, const Matrix_U& matrix2);
 
 // Операции матрицы с числом.
-Matrix_U operator*(const Matrix_U& matrix_u, const double& number);
-Matrix_U operator*(const double& number, const Matrix_U& matrix_u);
+Matrix_U operator*(const Matrix_U& matrix_u, const double number);
+Matrix_U operator*(const double number, const Matrix_U& matrix_u);
 
 std::ostream& operator<<(std::ostream& ostrm, const Matrix_U& matrix_u);
 

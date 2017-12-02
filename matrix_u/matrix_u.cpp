@@ -2,11 +2,11 @@
 #include <iostream>
 
 Matrix_U::Matrix_U(const ptrdiff_t& nRow, const ptrdiff_t& nCol)
+        : nRow_(nRow)
+        , nCol_(nCol)
 {
     if (nRow > 0 && nCol > 0) {
 
-    nRow_ = nRow;
-    nCol_ = nCol;
     pData_ = new double[nRow_* nCol_];
 
     } else {
@@ -14,10 +14,10 @@ Matrix_U::Matrix_U(const ptrdiff_t& nRow, const ptrdiff_t& nCol)
     }
 }
 
-Matrix_U::Matrix_U(const Matrix_U &matrix_u)
+Matrix_U::Matrix_U(const Matrix_U& matrix_u)
+        : nRow_(matrix_u.nRow_)
+        , nCol_(matrix_u.nCol_)
 {
-    nRow_ = matrix_u.nRow_;
-    nCol_ = matrix_u.nCol_;
     pData_ = new double[nRow_ * nCol_];
 
     for (ptrdiff_t i(0); i < nRow_ * nCol_; i += 1) {
@@ -51,7 +51,7 @@ const double& Matrix_U::at(const ptrdiff_t iRow, const ptrdiff_t iCol) const
     }
 }
 
-Matrix_U Matrix_U::operator=(const Matrix_U &matrix_u)
+Matrix_U& Matrix_U::operator=(const Matrix_U& matrix_u)
 {
     for (ptrdiff_t i(0); i < nRow_ * nCol_; i += 1) {
         pData_[i] = matrix_u.pData_[i];
@@ -59,7 +59,7 @@ Matrix_U Matrix_U::operator=(const Matrix_U &matrix_u)
     return *this;
 }
 
-Matrix_U Matrix_U::operator+=(const Matrix_U &matrix_u)
+Matrix_U& Matrix_U::operator+=(const Matrix_U& matrix_u)
 {
     if (nRow_ == matrix_u.nRow_ && nCol_ == matrix_u.nCol_) {
 
@@ -74,7 +74,7 @@ Matrix_U Matrix_U::operator+=(const Matrix_U &matrix_u)
     }
 }
 
-Matrix_U Matrix_U::operator-=(const Matrix_U &matrix_u)
+Matrix_U& Matrix_U::operator-=(const Matrix_U& matrix_u)
 {
     if (nRow_ == matrix_u.nRow_ && nCol_ == matrix_u.nCol_) {
 
@@ -90,7 +90,7 @@ Matrix_U Matrix_U::operator-=(const Matrix_U &matrix_u)
 }
 
 // Something always goes wrong.
-Matrix_U Matrix_U::operator*=(const Matrix_U &matrix_u)
+Matrix_U& Matrix_U::operator*=(const Matrix_U& matrix_u)
 {
     double* newMatrix = new double[nRow_*nCol_];
 
@@ -118,7 +118,7 @@ Matrix_U Matrix_U::operator*=(const Matrix_U &matrix_u)
     }
 }
 
-Matrix_U Matrix_U::operator*=(const double &number)
+Matrix_U& Matrix_U::operator*=(const double number)
 {
     for (ptrdiff_t i(0); i < nRow_ * nCol_; i += 1) {
         pData_[i] *= number;
@@ -154,13 +154,13 @@ Matrix_U operator*(const Matrix_U& matrix1, const Matrix_U& matrix2)
     return matrix_u *= matrix2;
 }
 
-Matrix_U operator*(const Matrix_U& matrix_u, const double& number)
+Matrix_U operator*(const Matrix_U& matrix_u, const double number)
 {
     Matrix_U matrix(matrix_u);
     return matrix *=number;
 }
 
-Matrix_U operator*(const double& number, const Matrix_U& matrix_u)
+Matrix_U operator*(const double number, const Matrix_U& matrix_u)
 {
     Matrix_U matrix(matrix_u);
     return matrix *=number;
