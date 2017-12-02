@@ -35,7 +35,6 @@ private:
     ptrdiff_t nRow_ { 0 };
     ptrdiff_t nCol_ { 0 };
     double* pData_  {nullptr};
-
 };
 
 // Операции матрицы с матрицей.
