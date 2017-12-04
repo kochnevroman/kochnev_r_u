@@ -26,7 +26,7 @@ Vector3d& Vector3d::operator=(const Vector3d& vector3d)
 
 bool Vector3d::operator==(const Vector3d& vector3d)
 {
-    double eps0 = 0.000001;
+    double eps0(0.000001);
     return((abs(vector3d.x_ - x_) < eps0) && (abs(vector3d.y_ - y_) < eps0) && (abs(vector3d.z_ - z_) < eps0));
 }
 
@@ -72,7 +72,7 @@ double Vector3d::scalarProduct(const Vector3d& vector3d)
     return (x_ * vector3d.x_, y_ * vector3d.y_, z_ * vector3d.z_);
 }
 
-double Vector3d::length()
+double Vector3d::length() const
 {
     return sqrt(pow(x_, 2) + pow(y_, 2) + pow(z_, 2));
 }

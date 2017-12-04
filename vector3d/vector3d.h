@@ -26,7 +26,7 @@ public:
     // Скалярное произведение двух векторов.
     double scalarProduct(const Vector3d& vector3d);
     // Длина вектора.
-    double length ();
+    double length () const;
     // Косинус угла между векторами.
     double cosineOfAngle (const Vector3d& vector3d);
 
