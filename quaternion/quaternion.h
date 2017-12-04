@@ -28,9 +28,9 @@ public:
     // Кватернионное сопряжение.
     Quaternion conjugating();
     // Модуль.
-    double module();
+    double module() const;
     // Детерминант квартериона, представимого в матричном виде.
-    double determinant();
+    double determinant() const;
 
     std::ostream& writeTo(std::ostream& ostrm) const;
     std::istream& readFrom(std::istream& istrm);
@@ -46,7 +46,6 @@ private:
     static const char space{' '};
     static const char rightBrace{ '}' };
 };
-
 
 Quaternion operator+(const Quaternion& firstQuaternion, const Quaternion& secondQuaternion);
 Quaternion operator-(const Quaternion& firstQuaternion, const Quaternion& secondQuaternion);
