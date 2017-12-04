@@ -24,22 +24,22 @@ int main()
     const Array constArray(array);
     cout << "Доступ к элементу с индексом 2 константного массива, constArray[2]: " << constArray[2] << endl << endl;
 
-    cout << "Попытка доступа к элменту массива с индексом -25: " << endl;
+    cout << "Попытка доступа к элементу массива с индексом -25: " << endl;
     cout << "array[-25] = 100: " << endl;
     try {
         array[-25] = 100;
     }
-    catch (invalid_argument& e) {
-        cout << "  " << e.what() << endl << endl;
+    catch (const invalid_argument& error) {
+        cout << "  " << error.what() << endl << endl;
     }
 
-    cout << "Попытка доступа к элменту массива с индексом 256: " << endl;
+    cout << "Попытка доступа к элементу массива с индексом 256: " << endl;
     cout << "array[256] = 100: " << endl;
     try {
         array[256] = 100;
     }
-    catch (invalid_argument& e) {
-        cout << "  " << e.what() << endl << endl;
+    catch (const invalid_argument& error) {
+        cout << "  " << error.what() << endl << endl;
     }
 
     cout << "Исходный массив: " << array << endl << endl;
@@ -65,8 +65,8 @@ int main()
     try {
         array[1024] = 512;
     }
-    catch (invalid_argument& e) {
-        cout << "  " << e.what() << endl << endl;
+    catch (const invalid_argument& error) {
+        cout << "  " << error.what() << endl << endl;
     }
 
     array.removeFirst();
@@ -86,8 +86,8 @@ int main()
     try {
         array.removeAtIndex(89);
     }
-    catch (invalid_argument& e) {
-        cout << "  " << e.what() << endl << endl;
+    catch (const invalid_argument& error) {
+        cout << "  " << error.what() << endl << endl;
     }
 
     cout << "Попытка удаления из массива элемента с индексом -13: " << endl;
@@ -95,8 +95,8 @@ int main()
     try {
         array.removeAtIndex(-13);
     }
-    catch (invalid_argument& e) {
-        cout << "  " << e.what() << endl << endl;
+    catch (const invalid_argument& error) {
+        cout << "  " << error.what() << endl << endl;
     }
 
     cout << "Перестановка элементов array[1] и array[5]: " << endl;
@@ -108,8 +108,8 @@ int main()
     try {
         array.reshuffleOfElements(-1, 99);
     }
-    catch (invalid_argument& e) {
-        cout << "  " << e.what() << endl << endl;
+    catch (const invalid_argument& error) {
+        cout << "  " << error.what() << endl << endl;
     }
 
     cout << "Умолчательная сортировка массива по возрастанию: " << endl;

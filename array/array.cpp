@@ -191,7 +191,7 @@ void Array::removeFirst()
         pData_ = newArray;
 
     } else {
-        throw std::invalid_argument("Can not remove an element from an empty array");
+        throw std::runtime_error("Can not remove an element from an empty array");
     }
 }
 
@@ -209,7 +209,7 @@ void Array::removeLast()
         pData_ = newArray;
 
     } else {
-        throw std::invalid_argument("Can not remove an element from an empty array");
+        throw std::runtime_error("Can not remove an element from an empty array");
     }
 }
 
