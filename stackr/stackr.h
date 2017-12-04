@@ -25,6 +25,9 @@ public:
 
 private:
 // some some sad or not, let it know...
+    struct Node
+    {
+    };
 };
 
 inline std::ostream& operator<<(std::ostream& ostrm, StackR& stackR);

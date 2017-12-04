@@ -43,5 +43,10 @@ inline std::ostream& operator<<(std::ostream& ostrm, StackR& stackR)
 
 std::ostream& StackR::writeTo(std::ostream &ostrm)
 {
-
+    StackR stackR(*this);
+    while (!stackR.isEmpty()) {
+        ostrm << stackR.top() << " ";
+        stackR.pop();
+    }
+    return ostrm;
 }
