@@ -20,8 +20,8 @@ int main()
     try {
         Matrix_R testMatrix_r(-3, 5);
     }
-    catch (invalid_argument& e) {
-        cout << "  " << e.what() << endl << endl;
+    catch (const invalid_argument& error) {
+        cout << "  " << error.what() << endl << endl;
     }
 
     Matrix_R matrix_r2(3, 3);
@@ -38,8 +38,8 @@ int main()
     try {
         matrix_r2.at(-100, 100);
     }
-    catch (invalid_argument& e) {
-        cout << "  " << e.what() << endl << endl;
+    catch (const invalid_argument& error) {
+        cout << "  " << error.what() << endl << endl;
     }
 
     const Matrix_R constMatrix_r(matrix_r2);
@@ -49,8 +49,8 @@ int main()
     try {
         constMatrix_r.at(1, 64);
     }
-    catch (invalid_argument& e) {
-        cout << "  " << e.what() << endl << endl;
+    catch (const invalid_argument& error) {
+        cout << "  " << error.what() << endl << endl;
     }
 
     Matrix_R sumTwoMatrix(matrix_r1);
@@ -70,8 +70,8 @@ int main()
         Matrix_R sumTwoMatrix(matrix_r2);
         sumTwoMatrix += matrix_r3;
     }
-    catch (invalid_argument& e) {
-        cout << "  " << e.what() << endl << endl;
+    catch (const runtime_error& error) {
+        cout << "  " << error.what() << endl << endl;
     }
 
     Matrix_R subTwoMatrix(matrix_r1);
@@ -81,11 +81,11 @@ int main()
     cout << "Попытка разности матрицы размером 3х3 и матрицы 2х1: " << endl;
     cout << "cmatrix_r2 -= matrix_r3: " << endl;
     try {
-        Matrix_R sumTwoMatrix(matrix_r2);
-        sumTwoMatrix -= matrix_r3;
+        Matrix_R subTwoMatrix(matrix_r2);
+        subTwoMatrix -= matrix_r3;
     }
-    catch (invalid_argument& e) {
-        cout << "  " << e.what() << endl << endl;
+    catch (const runtime_error& error) {
+        cout << "  " << error.what() << endl << endl;
     }
 
     Matrix_R multiMatrixWithMatrix(matrix_r1);
@@ -95,14 +95,14 @@ int main()
     cout << "Попытка произведения матрицы размером 3х3 и матрицы 2х1: " << endl;
     cout << "matrix_r2 *= matrix_r3: " << endl;
     try {
-        Matrix_R sumTwoMatrix(matrix_r2);
-        sumTwoMatrix *= matrix_r3;
+        Matrix_R multiTwoMatrix(matrix_r2);
+        multiTwoMatrix *= matrix_r3;
     }
-    catch (invalid_argument& e) {
-        cout << "  " << e.what() << endl << endl;
+    catch (const runtime_error& error) {
+        cout << "  " << error.what() << endl << endl;
     }
 
-    double number = 0.5;
+    double number(0.5);
     Matrix_R multiMatrixWithNumber(matrix_r1);
     multiMatrixWithNumber *= number;
     cout << "Произведение matrix_r1 *= number = 0,5: " << "\n" << multiMatrixWithNumber << endl;

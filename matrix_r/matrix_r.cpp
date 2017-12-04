@@ -103,7 +103,7 @@ Matrix_R& Matrix_R::operator+=(const Matrix_R& matrix_r)
         return *this;
 
     } else {
-        throw std::invalid_argument("Matrices of different sizes");
+        throw std::runtime_error("Matrices of different sizes");
     }
 }
 
@@ -121,7 +121,7 @@ Matrix_R& Matrix_R::operator-=(const Matrix_R& matrix_r)
         return *this;
 
     } else {
-        throw std::invalid_argument("Matrices of different sizes");
+        throw std::runtime_error("Matrices of different sizes");
     }
 }
 
@@ -158,7 +158,7 @@ Matrix_R& Matrix_R::operator*=(const Matrix_R& matrix_r)
         return *this;
 
     } else {
-        throw std::invalid_argument("Matrices can not be multiplied");
+        throw std::runtime_error("Matrices can not be multiplied");
     }
 }
 
