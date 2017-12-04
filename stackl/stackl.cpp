@@ -5,16 +5,18 @@
 StackL::StackL(const StackL& stackL)
 {
     StackL temporaryStackL;
-    Node* temporaryNode = stackL.pHead_;
+    Node* node = stackL.pHead_;
 
-    while (temporaryNode != nullptr) {
-        temporaryStackL.push(temporaryNode -> data_);
-        temporaryNode = temporaryNode -> pNext_;
+    while (node != nullptr) {
+        temporaryStackL.push(node -> data_);
+        node = node -> pNext_;
     }
-    temporaryNode = temporaryStackL.pHead_;
-    while (temporaryNode != nullptr) {
-        push(temporaryNode -> data_);
-        temporaryNode = temporaryNode -> pNext_;
+
+    node = temporaryStackL.pHead_;
+
+    while (node != nullptr) {
+        push(node -> data_);
+        node = node -> pNext_;
     }
 }
 
@@ -35,11 +37,11 @@ StackL::Node::Node(Node* pNext, const int& value)
 StackL& StackL::operator=(const StackL& stackL)
 {
     StackL temporaryStackL;
-    Node* temporaryNode(stackL.pHead_);
+    Node* node(stackL.pHead_);
 
-    while (temporaryNode != nullptr) {
-        temporaryStackL.push(temporaryNode -> data_);
-        temporaryNode = temporaryNode -> pNext_;
+    while (node != nullptr) {
+        temporaryStackL.push(node -> data_);
+        node = node -> pNext_;
     }
     while (!temporaryStackL.isEmpty()) {
         push(temporaryStackL.top());
@@ -61,7 +63,7 @@ void StackL::pop()
         pHead_ = pDelete -> pNext_;
         delete pDelete;
     } else {
-        throw std::invalid_argument("Can not do pop() no more");
+        throw std::runtime_error("Can not do pop() no more");
     }
 }
 
@@ -70,7 +72,7 @@ int& StackL::top()
     if ( !isEmpty() ) {
         return  pHead_ -> data_;
     } else {
-        throw std::invalid_argument("Can not do top() no more");
+        throw std::runtime_error("Can not do top() no more");
     }
 }
 
@@ -79,7 +81,7 @@ const int& StackL::top() const
     if ( !isEmpty() ) {
         return pHead_ -> data_;
     } else {
-        throw std::invalid_argument("Can not do top() no more");
+        throw std::runtime_error("Can not do top() no more");
     }
 }
 

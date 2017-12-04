@@ -33,15 +33,23 @@ int main()
     cout << "Присвоим верхушке значение 1024: " << endl;
     cout << stackL << endl << endl;
 
-    stackL.pop();
-    stackL.pop();
-    stackL.pop();
+    const StackL stackLConst(stackL);
+    cout << "Головной элемент константного стека, top(): " << endl;
+    cout << stackLConst.top() << endl << endl;
+
     stackL.pop();
     stackL.pop();
     stackL.pop();
     stackL.pop();
 
-    cout << "Проверка стека на пустоту: ";
+    cout << "Стек после 4 операций pop(): " << endl;
+    cout << stackL << endl << endl;
+
+    stackL.pop();
+    stackL.pop();
+    stackL.pop();
+
+    cout << "Проверка стека на пустоту после еще 3 операций pop(): ";
     cout << stackL.isEmpty() << endl << endl;
 
     cout << "Попытка выполнения pop() с пустым стеком: " << endl;
@@ -50,8 +58,8 @@ int main()
     try {
         stackL.pop();
     }
-    catch (invalid_argument& e) {
-        cout << "  " << e.what() << endl;
+    catch (const runtime_error& error) {
+        cout << "  " << error.what() << endl;
     }
 
     return 0;
