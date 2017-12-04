@@ -43,7 +43,8 @@ Rational& Rational::operator+=(const Rational& rational)
     return *this;
 }
 
-Rational& Rational::operator-=(const Rational& rational) {
+Rational& Rational::operator-=(const Rational& rational)
+{
     num_ = num_*rational.denom_ - rational.num_*denom_;
     denom_ = denom_*rational.denom_;
 
@@ -53,7 +54,8 @@ Rational& Rational::operator-=(const Rational& rational) {
     return *this;
 }
 
-Rational& Rational::operator*=(const Rational& rational) {
+Rational& Rational::operator*=(const Rational& rational)
+{
     num_ = rational.num_*num_;
     denom_ = rational.denom_*denom_;
 
@@ -64,7 +66,8 @@ Rational& Rational::operator*=(const Rational& rational) {
 }
 
 
-Rational& Rational::operator/=(const Rational& rational) {
+Rational& Rational::operator/=(const Rational& rational)
+{
     num_ = num_*rational.denom_;
     denom_ = rational.num_*denom_;
 
@@ -74,7 +77,7 @@ Rational& Rational::operator/=(const Rational& rational) {
     return *this;
 }
 
-bool Rational::isUnitFraction()
+bool Rational::isUnitFraction() const
 {
     if (num_== denom_) {
         return true;

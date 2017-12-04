@@ -24,7 +24,7 @@ public:
     Rational& operator/=(const Rational& rational);
 
     // Проверка равенства числителя и знаменателя для вывода.
-    bool isUnitFraction();
+    bool isUnitFraction() const ;
 
     std::ostream& writeTo(std::ostream& ostrm) const;
     std::istream& readFrom(std::istream& istrm);

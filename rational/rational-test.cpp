@@ -31,8 +31,8 @@ int main()
     try {
         Rational testRational(3, 0);
     }
-    catch (invalid_argument& e) {
-        cout << e.what() << endl << endl;
+    catch (const invalid_argument& error) {
+        cout << error.what() << endl << endl;
     }
 
     rational += Rational(1, 4);
