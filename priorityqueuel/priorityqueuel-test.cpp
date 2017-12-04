@@ -16,6 +16,7 @@ int main()
     priorityQueueL.push(0);
     priorityQueueL.push(75);
     priorityQueueL.push(125);
+    priorityQueueL.push(256);
 
     cout << "Исходная очередь: " << endl;
     cout << priorityQueueL << endl << endl;
@@ -34,15 +35,24 @@ int main()
     cout << "Присвоим головному элементу значение 4096: " << endl;
     cout << priorityQueueL << endl << endl;
 
-    priorityQueueL.pop();
-    priorityQueueL.pop();
-    priorityQueueL.pop();
+    const PriorityQueueL priorityQueueLConst(priorityQueueL);
+    cout << "Головной элемент константной очереди, top(): " << endl;
+    cout << priorityQueueLConst.top() << endl << endl;
+
     priorityQueueL.pop();
     priorityQueueL.pop();
     priorityQueueL.pop();
     priorityQueueL.pop();
 
-    cout << "Проверка очереди на пустоту: ";
+    cout << "Очередь после 4 операций pop(): " << endl;
+    cout << priorityQueueL << endl << endl;
+
+    priorityQueueL.pop();
+    priorityQueueL.pop();
+    priorityQueueL.pop();
+    priorityQueueL.pop();
+
+    cout << "Проверка очереди на пустоту после еще 4 операций pop(): ";
     cout << priorityQueueL.isEmpty() << endl << endl;
 
     cout << "Попытка выполнения pop() с пустой очередью: " << endl;
@@ -51,8 +61,8 @@ int main()
     try {
         priorityQueueL.pop();
     }
-    catch (invalid_argument& e) {
-        cout << "  " << e.what() << endl;
+    catch (const runtime_error& error) {
+        cout << "  " << error.what() << endl;
     }
 
     return 0;
