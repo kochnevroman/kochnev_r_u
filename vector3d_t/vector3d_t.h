@@ -88,7 +88,7 @@ bool Vector3d_T<T>::compareTo(const Vector3d_T<T>& vector3d_t)
 
 bool Vector3d_T<double>::compareTo(const Vector3d_T<double>& vector3d_t)
 {
-    const double eps0 = 1e-12;
+    double eps0(0.000001);
     if ((x_ - vector3d_t.x_) < eps0 && (y_ - vector3d_t.y_) < eps0 && (z_ - vector3d_t.z_) < eps0) {
         return true;
     } else {
@@ -98,7 +98,7 @@ bool Vector3d_T<double>::compareTo(const Vector3d_T<double>& vector3d_t)
 
 bool Vector3d_T<float>::compareTo(const Vector3d_T<float>& vector3d_t)
 {
-    const float eps0 = 1e-12;
+    double eps0(0.000001);
     if ((x_ - vector3d_t.x_) < eps0 && (y_ - vector3d_t.y_) < eps0 && (z_ - vector3d_t.z_) < eps0) {
         return true;
     } else {
@@ -116,7 +116,7 @@ bool Vector3d_T<T>::operator==(const Vector3d_T<T>& vector3d_t)
 template <typename T>
 bool Vector3d_T<T>::operator==(const Vector3d_T<T>& vector3d_t)
 {
-    double eps0 = 0.000001;
+    double eps0(0.000001);
     return((abs(vector3d_t.x_ - x_) < eps0) && (abs(vector3d_t.y_ - y_) < eps0) && (abs(vector3d_t.z_ - z_) < eps0));
 }
 
