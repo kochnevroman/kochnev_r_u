@@ -22,7 +22,7 @@ Complex& Complex::operator=(const Complex& complex)
 
 bool Complex::operator==(const Complex& rhs) const
 {
-    double eps0 = 0.0000001;
+    double eps0(0.0000001);
     return (abs(re - rhs.re) < eps0 ) && (abs(im - rhs.im) < eps0);
 }
 

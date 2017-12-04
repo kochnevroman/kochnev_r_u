@@ -76,7 +76,7 @@ int main()
     cout << "Произведение firstComplex (3.8, 2.1) и 3.5 = " << firstComplex * number << endl;
     cout << "Произведение 3.5 и firstComplex (3.8, 2.1) = " << number * firstComplex << endl << endl;
 
-    cout << "Частное комплексных чисел complex(-2,1) и complex(1,-1) = " << Complex(-2,1) / Complex(1,-1) << endl;
+    cout << "Частное комплексных чисел complex(-2,1) и complex(1,-1) = " << Complex(-2, 1) / Complex(1, -1) << endl;
     cout << "Частное firstComplex (3.8, 2.1) и 3.5 = " << firstComplex / number << endl;
     cout << "Частное 3.5 и firstComplex (3.8, 2.1) = " << number / firstComplex << endl << endl;
 
