@@ -79,10 +79,7 @@ Rational& Rational::operator/=(const Rational& rational)
 
 bool Rational::isUnitFraction() const
 {
-    if (num_== denom_) {
-        return true;
-    }
-    return false;
+    return num_ == denom_;
 }
 
 Rational operator+(const Rational& firstRational, const Rational& secondRational)
