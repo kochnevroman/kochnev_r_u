@@ -93,7 +93,6 @@ Quaternion Quaternion::conjugating()
 double Quaternion::module() const
 {
     return sqrt( pow(a_, 2) +  pow(b_, 2) + pow (c_, 2) + pow(d_, 2) );
-
 }
 
 double Quaternion::determinant() const
@@ -141,7 +140,6 @@ std::istream& operator>>(std::istream& istrm, Quaternion& quaternion)
 {
     return quaternion.readFrom(istrm);
 }
-
 
 std::ostream& Quaternion::writeTo(std::ostream& ostrm) const
 {
