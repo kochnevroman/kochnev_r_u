@@ -3,11 +3,12 @@
 #define STACKR_STACKR_H
 
 #include <iosfwd>
+#include <cstddef>
 
 class StackR
 {
 public:
-    StackR() = default;
+    StackR();
     explicit StackR(const StackR& stackR);
 
     ~StackR();
@@ -24,12 +25,12 @@ public:
     std::ostream& writeTo(std::ostream& ostrm);
 
 private:
-// some some sad or not, let it know...
-    struct Node
-    {
-    };
+    int* pData_{ nullptr };
+    ptrdiff_t size_{ 1 };
+    ptrdiff_t head_{ 0 };
+
 };
 
-inline std::ostream& operator<<(std::ostream& ostrm, StackR& stackR);
+std::ostream& operator<<(std::ostream& ostrm, StackR& stackR);
 
 #endif //STACKR_STACKR_H

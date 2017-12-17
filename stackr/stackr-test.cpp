@@ -26,6 +26,7 @@ int main()
     cout << "Стек после операции pop(): " << endl;
     cout << stackR << endl << endl;
 
+
     cout << "Смотрим, что лежит на верхушке стека, top(): " << endl;
     cout << stackR.top() << endl << endl;
 
@@ -45,6 +46,7 @@ int main()
     cout << "Стек после 4 операций pop(): " << endl;
     cout << stackR << endl << endl;
 
+    stackR.pop();
     stackR.pop();
     stackR.pop();
     stackR.pop();
